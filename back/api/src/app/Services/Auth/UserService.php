@@ -18,5 +18,4 @@ class UserService
     {
         return $this->userRepository->get(['email'=>$email],true);
     }
-
 }

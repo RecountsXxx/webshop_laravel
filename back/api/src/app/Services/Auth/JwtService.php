@@ -4,10 +4,8 @@ namespace App\Services\Auth;
 
 use App\Http\Resources\Auth\SuccessLoginResource;
 use Illuminate\Support\Facades\Auth;
-
 class JwtService
 {
-
     public function guardApi(array $data)
     {
         $token = Auth::guard('api')->attempt($data);
