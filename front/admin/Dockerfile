@@ -1,5 +1,5 @@
 FROM node:18-alpine
-EXPOSE 5173
+EXPOSE 5174
 
 # Create app directory
 RUN mkdir -p /usr/src/app
