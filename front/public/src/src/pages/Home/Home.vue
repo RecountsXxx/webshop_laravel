@@ -35,9 +35,24 @@ export default{
 
       <div class="grid grid-cols-4 gap-10">
         <CardComponent
+            id="1"
           title="Мужские Кроссовки Nike Blazer Mid Suede"
           price="1000"
           img="/sneakers/sneakers-1.jpg"
+            :is-cart-element=false
+        />
+        <CardComponent
+            id="2"
+            title="Мужские Кроссовки Nike Blazer Mid Suede"
+            price="1000"
+            img="/sneakers/sneakers-1.jpg"
+            :is-cart-element=false
+        />
+        <CardComponent
+            id="3"
+            title="Мужские Кроссовки Nike Blazer Mid Suede"
+            price="1000"
+            img="/sneakers/sneakers-1.jpg"
         />
       </div>
     </div>

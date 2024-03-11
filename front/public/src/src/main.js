@@ -1,15 +1,15 @@
 import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
-import {Notifications} from "@kyvg/vue3-notification";
 import {createRouter, createWebHistory} from "vue-router";
+import Notifications from '@kyvg/vue3-notification'
 
-import Login from "@/pages/Login.vue";
-import Home from "@/pages/Home.vue";
-import Register from "@/pages/Register.vue";
-import Account from "@/pages/Account.vue";
-import Bookmarks from "@/pages/Bookmarks.vue";
-import ShoppingCart from "@/pages/ShoppingCart.vue";
+import Login from "@/pages/Auth/Login.vue";
+import Home from "@/pages/Home/Home.vue";
+import Register from "@/pages/Auth/Register.vue";
+import Account from "@/pages/Account/Account.vue";
+import Bookmarks from "@/pages/Bookmark/Bookmarks.vue";
+import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -33,9 +33,7 @@ router.beforeEach((to, from, next) => {
 });
 
 const app = createApp(App)
-
-app.use(Notifications);
 app.use(router)
-
+app.use(Notifications)
 app.mount('#app')
 
