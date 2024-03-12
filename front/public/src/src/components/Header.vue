@@ -11,6 +11,24 @@
     </router-link>
 
     <ul class="flex items-center gap-10">
+      <router-link to="/brands-list">
+        <li class="flex items-center gap-3 cursor-pointer">
+          <img src="/cart.svg" alt="Cart" />
+          <b>Brands</b>
+        </li>
+      </router-link>
+      <router-link to="/categories-list">
+        <li class="flex items-center gap-3 cursor-pointer">
+          <img src="/cart.svg" alt="Cart" />
+          <b>Categories</b>
+        </li>
+      </router-link>
+      <router-link to="/vendors-list">
+        <li class="flex items-center gap-3 cursor-pointer">
+          <img src="/cart.svg" alt="Cart" />
+          <b>Vendors</b>
+        </li>
+      </router-link>
       <router-link to="/shopping-cart">
         <li class="flex items-center gap-3 cursor-pointer">
           <img src="/cart.svg" alt="Cart" />

@@ -10,6 +10,13 @@ import Register from "@/pages/Auth/Register.vue";
 import Account from "@/pages/Account/Account.vue";
 import Bookmarks from "@/pages/Bookmark/Bookmarks.vue";
 import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart.vue";
+import ProductDetails from "@/components/ProductDetails.vue";
+import Category from "@/pages/Category/Category.vue";
+import Vendor from "@/pages/Vendor/Vendor.vue";
+import Brand from "@/pages/Brand/Brand.vue";
+import BrandList from "@/pages/Brand/BrandList.vue";
+import CategoryList from "@/pages/Category/CategoryList.vue";
+import VendorList from "@/pages/Vendor/VendorList.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -17,6 +24,13 @@ const routes = [
     { path: '/register', component: Register },
     { path: '/bookmarks', component: Bookmarks },
     { path: '/shopping-cart', component: ShoppingCart },
+    {path: '/product/:id', component: ProductDetails},
+    {path: '/category/:id', component: Category},
+    {path: '/vendor/:id', component: Vendor},
+    {path: '/brand/:id', component: Brand},
+    {path: '/brands-list', component: BrandList},
+    {path: '/categories-list', component: CategoryList},
+    {path: '/vendors-list', component: VendorList},
     { path: '/account', component: Account, meta: { requiresAuth: true } },
 ];
 const router = createRouter({

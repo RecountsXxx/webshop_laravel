@@ -1,10 +1,22 @@
 <script>
 
 import CardComponent from "@/components/Card.vue";
+import ProductService from "@/Services/Product/ProductService";
 
 export default{
   name:'homeView',
   components: {CardComponent},
+  data(){
+    return{
+      products: []
+    }
+  },
+  async created() {
+    this.products = await ProductService.getProducts();
+  },
+  methods:{
+
+  }
 }
 </script>
 
@@ -35,25 +47,14 @@ export default{
 
       <div class="grid grid-cols-4 gap-10">
         <CardComponent
-            id="1"
-          title="Мужские Кроссовки Nike Blazer Mid Suede"
-          price="1000"
-          img="/sneakers/sneakers-1.jpg"
-            :is-cart-element=false
+            v-for="product in products"
+            :key="product.id"
+            :id="product.id"
+            :title="product.title"
+            :price="product.price"
+            :img="product.image"
         />
-        <CardComponent
-            id="2"
-            title="Мужские Кроссовки Nike Blazer Mid Suede"
-            price="1000"
-            img="/sneakers/sneakers-1.jpg"
-            :is-cart-element=false
-        />
-        <CardComponent
-            id="3"
-            title="Мужские Кроссовки Nike Blazer Mid Suede"
-            price="1000"
-            img="/sneakers/sneakers-1.jpg"
-        />
+
       </div>
     </div>
 </template>
