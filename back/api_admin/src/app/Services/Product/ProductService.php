@@ -20,30 +20,54 @@ class ProductService
         return $product;
     }
 
-    public function uploadImages($id, $imageContent,$key)
+    public function uploadImages($id, $imageContent)
     {
-            $path = $id . '/' . 'image_' . $key . '.webp';
-            Storage::disk('product_images')->put($path, $imageContent);
-            $path = asset('storage/product_images/' . $id . '/image_' . $key . '.webp');
+        usleep(1000000);
+        $fileName = 'image_'  . time() . '.webp';
 
-        $this->imagesRepository->create(['product_id' => $id, 'image' => $path]);
+        $path = $id . '/' . $fileName;
+        Storage::disk('product_images')->put($path, $imageContent);
+        $url = asset('storage/product_images/' . $path);
+        $this->imagesRepository->create(['product_id' => $id, 'image' => $url]);
     }
 
 
+    public function show(string $id){
+        return $this->productRepository->getProduct($id);
+    }
     public function destroy(string $id)
     {
         $product = $this->productRepository->findOrFail($id);
         $this->productRepository->delete($product);
     }
 
-    public function update(array $data): Model
+    public function update(array $data,$id): Model
     {
-        $product = $this->productRepository->update($data);
-        return $this->productRepository->findOrFail($product->$data['id']);
+        $product = $this->productRepository->findOrFail($id);
+        $this->productRepository->update($product,$data);
+        return $this->productRepository->findOrFail($product->id);
     }
     public function index()
     {
         return $this->productRepository->getProducts();
     }
+    public function delete_image($id)
+    {
+        $image = $this->imagesRepository->findOrFail($id);
+        if (Storage::disk('product_images')->exists($image->image)) {
+            Storage::disk('product_images')->delete($image->image);
+        }
+        $this->imagesRepository->delete($image);
+    }
+    public function add_image($id, $imageContent)
+    {
+        $fileName = 'image_' . time() . '.webp';
+        $path = $id . '/' . $fileName;
+        Storage::disk('product_images')->put($path, $imageContent);
+        $url = asset('storage/product_images/' . $path);
+        $this->imagesRepository->create(['product_id' => $id, 'image' => $url]);
+    }
+
+
 
 }

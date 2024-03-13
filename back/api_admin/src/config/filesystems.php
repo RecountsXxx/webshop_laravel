@@ -51,6 +51,27 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'category_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/category_images'),
+            'url' => env('APP_URL') . '/storage/category_images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'vendor_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/vendor_images'),
+            'url' => env('APP_URL') . '/storage/vendor_images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'brand_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/brand_images'),
+            'url' => env('APP_URL') . '/storage/brand_images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

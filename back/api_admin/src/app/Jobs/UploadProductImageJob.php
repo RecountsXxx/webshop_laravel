@@ -27,8 +27,9 @@ class UploadProductImageJob implements ShouldQueue
         $product = $productService->store($this->data);
         foreach ($this->data['image_paths'] as $key => $imagePath) {
             $imageContent = Storage::disk('local')->get($imagePath);
-            $productService->uploadImages($product->id, $imageContent, $key);
+            $productService->uploadImages($product->id, $imageContent);
         }
+        return $product;
     }
 }
 

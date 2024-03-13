@@ -16,4 +16,8 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->with(['vendor', 'category', 'brand','images'])->get();
     }
+    public function getProduct($id)
+    {
+        return $this->model->with(['vendor', 'category', 'brand','images'])->findOrFail($id);
+    }
 }

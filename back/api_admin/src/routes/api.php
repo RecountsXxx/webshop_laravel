@@ -28,5 +28,11 @@ Route::prefix('admin')->group(function (){
         });
     });
     Route::apiResource('products',\App\Http\Controllers\Product\ProductController::class);
+    Route::delete('/products/delete-image/{id}',[\App\Http\Controllers\Product\ProductController::class,'delete_image']);
+    Route::post('/products/add-image',[\App\Http\Controllers\Product\ProductController::class,'add_image']);
+
+    Route::apiResource('categories',\App\Http\Controllers\Category\CategoryController::class);
+    Route::apiResource('vendors',\App\Http\Controllers\Vendor\VendorController::class);
+    Route::apiResource('brands',\App\Http\Controllers\Brand\BrandController::class);
 });
 
