@@ -23,13 +23,14 @@
           <td>{{ product.title }}</td>
           <td>{{ truncateString(product.description, 30) }}</td>
           <td>{{ product.price }}</td>
-          <td><img :src=product.image width="35px" height="35px"></td>
+          <td><img :src=product.images[0].image width="35px" height="35px"></td>
           <td>{{ product.category.category_name }}</td>
           <td>{{ product.brand.brand_name }}</td>
           <td>{{ product.vendor.vendor_name }}</td>
           <td>{{ product.created_at }}</td>
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete</button>
+            <a :href="`http://localhost/product/${product.id}`"><button class="btn btn-danger">View</button></a>
             <router-link to="/add-product"><button class="btn btn-primary" @click="deleteProduct(product.id)">Edit</button></router-link>
           </td>
         </tr>

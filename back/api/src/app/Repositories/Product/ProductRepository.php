@@ -16,10 +16,10 @@ class ProductRepository extends BaseRepository
 
     public function getProductPerId($id)
     {
-        return $this->model->with(['vendor', 'category', 'brand'])->find($id);
+        return $this->model->with(['vendor', 'category', 'brand','images'])->find($id);
     }
     public function getProducts()
     {
-        return $this->model->with(['vendor', 'category', 'brand'])->get();
+        return $this->model->with(['vendor', 'category', 'brand','images'])->get();
     }
 }

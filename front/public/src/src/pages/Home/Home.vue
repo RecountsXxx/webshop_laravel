@@ -52,7 +52,7 @@ export default{
             :id="product.id"
             :title="product.title"
             :price="product.price"
-            :img="product.image"
+            :img="product.images[0].image"
         />
 
       </div>

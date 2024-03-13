@@ -28,8 +28,15 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            $imagePath = $request->file('image')->store('images');
+            $imagePaths = [];
 
+            // Обрабатываем каждое изображение из запроса
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('images');
+                $imagePaths[] = $imagePath;
+            }
+
+            // Добавляем данные о продукте и пути к изображениям в массив
             $data = [
                 'title' => $request->title,
                 'description' => $request->description,
@@ -37,7 +44,7 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'vendor_id' => $request->vendor_id,
                 'brand_id' => $request->brand_id,
-                'image_path' => $imagePath
+                'image_paths' => $imagePaths // Массив путей к изображениям
             ];
 
             UploadProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
@@ -47,6 +54,7 @@ class ProductController extends Controller
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }
     }
+
 
 
     public function show(string $id)
