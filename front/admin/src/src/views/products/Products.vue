@@ -7,8 +7,13 @@
         <thead>
         <tr>
           <th>Id</th>
-          <th>Name</th>
-          <th>Posts count</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Category name</th>
+          <th>Brand name</th>
+          <th>Vendor name</th>
           <th>Created at</th>
         </tr>
         </thead>
@@ -16,9 +21,16 @@
         <tr v-for="product in filteredProducts" :key="product.id">
           <td>{{ product.id }}</td>
           <td>{{ product.title }}</td>
+          <td>{{ truncateString(product.description, 30) }}</td>
+          <td>{{ product.price }}</td>
+          <td><img :src=product.image width="35px" height="35px"></td>
+          <td>{{ product.category.category_name }}</td>
+          <td>{{ product.brand.brand_name }}</td>
+          <td>{{ product.vendor.vendor_name }}</td>
           <td>{{ product.created_at }}</td>
           <td class="d-flex gap-3 flex-row">
-            <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete product</button>
+            <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete</button>
+            <router-link to="/add-product"><button class="btn btn-primary" @click="deleteProduct(product.id)">Edit</button></router-link>
           </td>
         </tr>
         </tbody>
@@ -31,7 +43,7 @@
 import ProductService from "@/services/products/ProductService";
 
 export default {
-  name: 'categoryView',
+  name: 'productsView',
   data() {
     return {
       products: [],
@@ -51,6 +63,13 @@ export default {
   methods: {
     async deleteProduct(productId){
       await ProductService.deleteProduct(productId);
+    },
+    truncateString(str, maxLength) {
+      if (str.length <= maxLength) {
+        return str;
+      } else {
+        return str.slice(0, maxLength) + '...';
+      }
     },
   }
 }

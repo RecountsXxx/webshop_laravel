@@ -12,4 +12,8 @@ class ProductRepository extends BaseRepository
         parent::__construct($product);
     }
 
+    public function getProducts()
+    {
+        return $this->model->with(['vendor', 'category', 'brand'])->get();
+    }
 }

@@ -8,7 +8,6 @@
         <div v-else class="container-fluid w-full w-100">
           <LoginView></LoginView>
         </div>
-      <h1>Helloo</h1>
 
       <div v-if="isAuthenticated" class="col-sm-10">
         <router-view></router-view>

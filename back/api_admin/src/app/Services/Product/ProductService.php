@@ -36,7 +36,7 @@ class ProductService
     }
     public function index()
     {
-        return $this->productRepository->all();
+        return $this->productRepository->getProducts();
     }
 
 }
