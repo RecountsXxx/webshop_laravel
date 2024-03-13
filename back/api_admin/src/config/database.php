@@ -130,20 +130,38 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_DB', '0'),
+            'host' => env('REDIS_CACHE_HOST', '127.0.0.1'),
+            'username' => env('REDIS_CACHE_USERNAME'),
+            'password' => env('REDIS_CACHE_PASSWORD'),
+            'port' => env('REDIS_CACHE_PORT', '6379'),
+            'database' => env('REDIS_CACHE_DB', '0'),
         ],
 
         'cache' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
+            'host' => env('REDIS_CACHE_HOST', '127.0.0.1'),
+            'username' => env('REDIS_CACHE_USERNAME'),
+            'password' => env('REDIS_CACHE_PASSWORD'),
+            'port' => env('REDIS_CACHE_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
+        ],
+
+        'jobs' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_JOBS_HOST', '127.0.0.1'),
+            'username' => env('REDIS_JOBS_USERNAME'),
+            'password' => env('REDIS_JOBS_PASSWORD'),
+            'port' => env('REDIS_JOBS_PORT', '6379'),
+            'database' => env('REDIS_JOBS_DB', '0'),
+        ],
+
+        'upload.images.jobs' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_JOBS_HOST', '127.0.0.1'),
+            'username' => env('REDIS_JOBS_USERNAME'),
+            'password' => env('REDIS_JOBS_PASSWORD'),
+            'port' => env('REDIS_JOBS_PORT', '6379'),
+            'database' => env('REDIS_AVATARS_JOBS_DB', '1'),
         ],
 
     ],

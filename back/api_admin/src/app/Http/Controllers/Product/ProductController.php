@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
+use App\Jobs\UploadProductImageJob;
 use App\Services\Product\ProductService;
 use Illuminate\Http\Request;
 
@@ -27,21 +28,22 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
+            $imagePath = $request->file('image')->store('images');
+
             $data = [
                 'title' => $request->title,
                 'description' => $request->description,
-                'image' => $request->file('image'),
                 'price' => $request->price,
                 'category_id' => $request->category_id,
                 'vendor_id' => $request->vendor_id,
-                'brand_id' => $request->brand_id
+                'brand_id' => $request->brand_id,
+                'image_path' => $imagePath
             ];
-            $imageContent = file_get_contents($request->file('image')->getPathname());
 
-            $product = $this->productService->store($data,$imageContent);
-            return new BaseWithResponseResource(['product'=>$product], 'created product');
-        }
-        catch (\Exception $e) {
+            UploadProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
+
+            return new BaseWithResponseResource(['product' => null], 'created product');
+        } catch (\Exception $e) {
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }
     }

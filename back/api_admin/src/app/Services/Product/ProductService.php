@@ -2,6 +2,7 @@
 
 namespace App\Services\Product;
 
+use App\Models\Product\Product;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Product\ProductRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -11,18 +12,15 @@ class ProductService
 {
     public function __construct(private ProductRepository $productRepository){}
 
-    public function store(array $data,$content): Model
+
+    public function store(array $data, $imageContent): Product
     {
         $product = $this->productRepository->create($data);
 
-        $path = $product->id . '/'  . 'original.webp';
-        $url = asset(Storage::url('public/product_images/' . $product->id . '/original.webp'));
+        $path = $product->id . '/' . 'original.webp';
+        Storage::disk('product_images')->put($path, $imageContent);
 
-        $product = $this->productRepository->findOrFail($product->id);
-        $this->productRepository->update($product,['image'=> $url]);
-
-        Storage::disk('product_images')->put($path, $content);
-
+        $this->productRepository->update($product,['image'=>$path]);
         return $product;
     }
     public function destroy(string $id)

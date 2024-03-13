@@ -59,8 +59,6 @@ services:
     container_name: laravel.api_admin
     volumes:
       - ./back/api_admin/src:/var/www/html
-      # Можно монтировать внешнюю папку в место хранилища
-      # - ./volumes/api/storage:/var/www/html/storage
     ports:
       - '8001:8001'
     env_file:
@@ -70,32 +68,6 @@ services:
     depends_on:
       - db.mysql.main
       - db.redis.cache
-# Profit
-
-# -----------------------------------------------------------------
-# Параллельная  нагрузка
-#  laravel.api.jonny:
-#    build:
-#      dockerfile: Dockerfile_api
-#      context: ./back/api
-#    container_name: laravel.api.jonny
-#    networks:
-#      - sne
-#    depends_on:
-#      - db.mysql.main
-#      - db.redis.cache
-#
-#  laravel.api.sunny:
-#    build:
-#      dockerfile: Dockerfile_api
-#      context: ./back/api
-#    container_name: laravel.api.sunny
-#    networks:
-#      - sne
-#    depends_on:
-#      - db.mysql.main
-#      - db.redis.cache
-# -----------------------------------------------------------------
 
   db.mysql.main:
     build:
