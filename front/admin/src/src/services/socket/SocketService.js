@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
-const socket = io('http://localhost/');
+//import io from 'socket.io-client';
+//const socket = io('http://localhost/');
 
-export default socket;
+//export default socket;

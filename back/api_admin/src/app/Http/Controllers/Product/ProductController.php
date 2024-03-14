@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\AddImageRequest;
 use App\Http\Requests\Product\ProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
 use App\Jobs\AddOneProductImageJob;
 use App\Jobs\UploadProductImageJob;
 use App\Services\Product\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -20,12 +22,12 @@ class ProductController extends Controller
     {
         try {
             $products = $this->productService->index();
-            return new BaseWithResponseResource(['products'=>$products], 'show products');
-        }
-        catch (\Exception $e) {
+            return new BaseWithResponseResource(['products' => $products], 'show products');
+        } catch (\Exception $e) {
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }
     }
+
 
     public function store(ProductRequest $request)
     {
@@ -67,7 +69,7 @@ class ProductController extends Controller
         }
     }
 
-    public function update(ProductRequest $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
         try {
             $data = [
@@ -114,8 +116,9 @@ class ProductController extends Controller
                 'product_id'=>$request->product_id,
                 'image_path'=>$image_path,
             ];
-            AddOneProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
-            return new BaseWithResponseResource(['image' =>'added'], 'add image');
+
+            $image = AddOneProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
+            return new BaseWithResponseResource(['image' => 'asd'], 'add image');
         } catch (\Exception $e) {
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }

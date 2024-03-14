@@ -14,10 +14,13 @@ class ProductRepository extends BaseRepository
 
     public function getProducts()
     {
-        return $this->model->with(['vendor', 'category', 'brand','images'])->get();
+        return $this->model->with(['vendor', 'category', 'brand','images'])->paginate(12);
     }
+
     public function getProduct($id)
     {
         return $this->model->with(['vendor', 'category', 'brand','images'])->findOrFail($id);
+
     }
+
 }

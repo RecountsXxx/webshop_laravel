@@ -7,6 +7,7 @@ use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Product\ProductImagesRepository;
 use App\Repositories\Product\ProductRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ProductService
@@ -61,11 +62,12 @@ class ProductService
     }
     public function add_image($id, $imageContent)
     {
+        usleep(1000000);
         $fileName = 'image_' . time() . '.webp';
         $path = $id . '/' . $fileName;
         Storage::disk('product_images')->put($path, $imageContent);
         $url = asset('storage/product_images/' . $path);
-        $this->imagesRepository->create(['product_id' => $id, 'image' => $url]);
+        $image = $this->imagesRepository->create(['product_id' => $id, 'image' => $url]);
     }
 
 
