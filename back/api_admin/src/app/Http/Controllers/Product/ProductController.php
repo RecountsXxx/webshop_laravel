@@ -46,10 +46,10 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'vendor_id' => $request->vendor_id,
                 'brand_id' => $request->brand_id,
-                'image_paths' => $imagePaths
             ];
-
-            $product = UploadProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
+            $product =$this->productService->store($data);
+            $data = ['image_paths'=>$imagePaths,'id'=>$product->id];
+            UploadProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
 
             return new BaseWithResponseResource(['product' => $product], 'created product');
         } catch (\Exception $e) {

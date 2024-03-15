@@ -5,8 +5,6 @@ class ProductService {
     async fetchProducts(pageNumber = 1) {
         try {
             const response = await axios.get('http://localhost/api/admin/products/?page=' + pageNumber);
-            console.log(pageNumber + '- page - ');
-            console.log(response);
             return response.data.data;
         } catch (error) {
             this.toast.error(error.request.data);
@@ -17,8 +15,8 @@ class ProductService {
     async addProduct(formData) {
         try {
             let response = await axios.post('http://localhost/api/admin/products', formData);
-            console.log(response);
             this.toast.info('Product succesfully added!');
+            return response.data.data.product;
         } catch (error) {
             this.toast.error(JSON.stringify(error.response.data.message));
             console.error('Error adding product:', error);
@@ -28,7 +26,6 @@ class ProductService {
     async getProduct(id) {
         try {
             let response = await axios.get('http://localhost/api/admin/products/' + id);
-            console.log(response);
             return response.data.data.product;
 
         } catch (error) {
@@ -66,7 +63,17 @@ class ProductService {
             this.toast.info('Image succesfully deleted!');
         } catch (error) {
             this.toast.error('Error!');
-            console.error('Error deleting product:', error);
+            console.error('Error deleting image:', error);
+        }
+    }
+
+    async addImage(data){
+        try {
+            await axios.post('http://localhost/api/admin/products/add-image',data);
+            this.toast.info('Image succesfully added!');
+        } catch (error) {
+            this.toast.error('Error!');
+            console.error('Error adding image:', error);
         }
     }
 

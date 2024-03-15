@@ -32,7 +32,22 @@ Route::prefix('admin')->group(function (){
     Route::post('/products/add-image',[\App\Http\Controllers\Product\ProductController::class,'add_image']);
 
     Route::apiResource('categories',\App\Http\Controllers\Category\CategoryController::class);
-    Route::apiResource('vendors',\App\Http\Controllers\Vendor\VendorController::class);
+    Route::post('categories/{category}', [\App\Http\Controllers\Category\CategoryController::class, 'update']);
+
     Route::apiResource('brands',\App\Http\Controllers\Brand\BrandController::class);
+    Route::post('brands/{brand}', [\App\Http\Controllers\Brand\BrandController::class, 'update']);
+
+    Route::apiResource('vendors',\App\Http\Controllers\Vendor\VendorController::class);
+    Route::post('vendors/{vendor}', [\App\Http\Controllers\Vendor\VendorController::class, 'update']);
+
+    Route::apiResource('users',\App\Http\Controllers\User\UserController::class);
+    Route::apiResource('admins',\App\Http\Controllers\Admin\AdminController::class);
+
+    Route::apiResource('orders',\App\Http\Controllers\Order\OrderController::class)->except(['store','update','show']);
+
+    Route::apiResource('join-to-vendors',\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class)->except(['store','update','show']);
+    Route::get('/add-to-vendors/{id}',[\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class,'addToVendors']);
+
+    Route::get('/dashboard',DashboardController::class);
 });
 

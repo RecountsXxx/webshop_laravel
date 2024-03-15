@@ -36,3 +36,6 @@ Route::get('/category/products',[CategoryController::class,'get_products_on_cate
 
 Route::apiResource('vendors',VendorController::class)->except(['destroy','store','update']);
 Route::get('/vendor/products',[VendorController::class,'get_products_on_vendor']);
+
+Route::post('/make-order',\App\Http\Controllers\Order\OrderController::class);
+Route::post('/join-to-vendors',\App\Http\Controllers\RequestForTheVendors\RequestForTheVendorsController::class);

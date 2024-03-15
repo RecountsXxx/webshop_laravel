@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-3">
     <div class="container">
       <h1>Add Product</h1>
       <form @submit.prevent="addProduct">
@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
           <label for="price" class="form-label">Price</label>
-          <input type="number" class="form-control" id="price" v-model="formData.price" required>
+          <input type="text" class="form-control" id="price" v-model="formData.price" required>
         </div>
         <div class="mb-3">
           <label for="category" class="form-label">Category</label>
@@ -71,7 +71,7 @@ export default {
     onImagesChange(event) {
       this.formData.images = event.target.files;
     },
-    addProduct() {
+    async addProduct() {
       const formData = new FormData();
       formData.append('title', this.formData.title);
       formData.append('description', this.formData.description);
@@ -79,26 +79,69 @@ export default {
       formData.append('category_id', this.formData.category_id);
       formData.append('vendor_id', this.formData.vendor_id);
       formData.append('brand_id', this.formData.brand_id);
-      for (let i = 0; i < this.formData.images.length; i++) {
-        formData.append('images[]', this.formData.images[i]);
-      }
+      formData.append('images[]', this.formData.images[0]);
+      formData.append('images[]', this.formData.images[1]);
+      const product = await ProductService.addProduct(formData)
+      if(product != null) {
+        if (this.formData.images.length > 2) {
+          for (const image of this.formData.images) {
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('product_id', product.id);
 
-      ProductService.addProduct(formData);
+            await ProductService.addImage(formData);
+          }
+        }
+      }
     },
     async fetchCategories() {
-      let response = await axios.get('http://localhost/api/admin/categories');
-      console.log(response.data.data.categories);
-      this.categories = response.data.data.categories;
+      try {
+        let allCategories = [];
+        let page = 1;
+        let totalPages = 1;
+        while (page != null) {
+          let response = await axios.get(`http://localhost/api/admin/categories?page=${totalPages}`);
+          allCategories = allCategories.concat(response.data.data.categories.data);
+          page = response.data.data.categories.next_page_url;
+          totalPages++;
+        }
+        this.categories = allCategories;
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
     },
+
     async fetchVendors() {
-      let response = await axios.get('http://localhost/api/admin/vendors');
-      console.log(response.data.data.categories);
-      this.vendors = response.data.data.vendors;
+      try {
+        let allVendors = [];
+        let page = 1;
+        let totalPages = 1;
+        while (page != null) {
+          let response = await axios.get(`http://localhost/api/admin/vendors?page=${totalPages}`);
+          allVendors = allVendors.concat(response.data.data.vendors.data);
+          page = response.data.data.vendors.next_page_url;
+          totalPages++;
+        }
+        this.vendors = allVendors;
+      } catch (error) {
+        console.error('Error fetching vendors:', error);
+      }
     },
     async fetchBrands() {
-      let response = await axios.get('http://localhost/api/admin/brands');
-      console.log(response.data.data.categories);
-      this.brands = response.data.data.brands;
+      try {
+        let allBrands = [];
+        let page = 1;
+        let totalPages = 1;
+        while (page != null) {
+          let response = await axios.get(`http://localhost/api/admin/brands?page=${totalPages}`);
+          allBrands = allBrands.concat(response.data.data.brands.data);
+          page = response.data.data.brands.next_page_url;
+          totalPages++;
+        }
+        this.brands = allBrands;
+      } catch (error) {
+        console.error('Error fetching brands:', error);
+      }
     },
   },
   mounted() {

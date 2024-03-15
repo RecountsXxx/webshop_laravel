@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('vendor_name');
             $table->text('description');
             $table->string('image');
-            $table->bigInteger('counts_products')->default(0);
             $table->timestamps();
         });
     }

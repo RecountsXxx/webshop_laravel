@@ -1,9 +1,8 @@
 <template>
-  <div class="col-sm-2 w-100 d-flex flex-column">
-
+  <div class="col-sm-2 w-100 vh-full d-flex flex-column">
     <div class="logo w-full mt-4 d-flex flex-row align-items-center">
       <img src="https://img.icons8.com/color/48/control-panel--v1.png" alt="logo" width="60px" height="60px">
-      <label class="ms-3 fs-2 text-white">Artzone</label>
+      <label class="ms-3 fs-2 text-white">Marketing</label>
     </div>
     <hr class="text-white"/>
     <div class="logo w-full d-flex flex-row align-items-center">
@@ -40,9 +39,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1 ">Categories</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/category" class="fs-5 text-decoration-none text-black ms-3">Show categories</router-link></li>
+          <li><router-link to="/categories" class="fs-5 text-decoration-none text-black ms-3">Show categories</router-link></li>
           <hr/>
-          <li><router-link to="/posts" class="fs-5 text-decoration-none text-black ms-3">Add category</router-link></li>
+          <li><router-link to="/add-category" class="fs-5 text-decoration-none text-black ms-3">Add category</router-link></li>
         </ul>
       </div>
 
@@ -52,9 +51,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Vendors</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/report_post" class="fs-5 text-decoration-none text-black ms-3">Show vendors</router-link></li>
+          <li><router-link to="/vendors" class="fs-5 text-decoration-none text-black ms-3">Show vendors</router-link></li>
           <hr/>
-          <li><router-link to="/report_comment" class="fs-5 text-decoration-none text-black ms-3">Add vendor</router-link></li>
+          <li><router-link to="/add-vendor" class="fs-5 text-decoration-none text-black ms-3">Add vendor</router-link></li>
         </ul>
       </div>
 
@@ -64,9 +63,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Brands</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/report_post" class="fs-5 text-decoration-none text-black ms-3">Show brands</router-link></li>
+          <li><router-link to="/brands" class="fs-5 text-decoration-none text-black ms-3">Show brands</router-link></li>
           <hr/>
-          <li><router-link to="/report_comment" class="fs-5 text-decoration-none text-black ms-3">Add brand</router-link></li>
+          <li><router-link to="/add-brand" class="fs-5 text-decoration-none text-black ms-3">Add brand</router-link></li>
         </ul>
       </div>
 
@@ -76,7 +75,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Users</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/user" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
+          <li><router-link to="/users" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
+          <hr/>
+          <li><router-link to="/add-user" class="fs-5 text-decoration-none text-black ms-3">Add users</router-link></li>
         </ul>
       </div>
 
@@ -86,10 +87,25 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Admins</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/admin" class="fs-5 text-decoration-none text-black ms-3">Show admins</router-link></li>
+          <li><router-link to="/admins" class="fs-5 text-decoration-none text-black ms-3">Show admins</router-link></li>
+          <hr/>
+          <li><router-link to="/add-admin" class="fs-5 text-decoration-none text-black ms-3">Add admin</router-link></li>
         </ul>
       </div>
 
+      <div class="w-100 mt-2">
+        <button class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
+          <img height="30" width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCklEQVR4nO2aS2xVVRSGzxVaMZFWWqQoYIwTBYkDCM6IRGM6sChgWiXGoYbaBh0oUUwKOiOYRoc6MEYTiUo0qYgmxogBEWOoRikFHzzUmZX4DtbSz6zef8fl7Xncx7mXaviTM+je+6y91tnr8a99G0UX8D8FcBlwB7ATeAsYBc4Af+o5o7E9WnM70BrNBADNwEbgbWCCyjEho+82WdF5MOBiYDPwnVPqLLAP2AasB5YB84AmGTxPY+u15gOdVMC3QH/DDAJuBb50CnwGbDJFE9ZfYk/CXBvQKxkB5n431/sUngEmteHnQBdQyHjPjD6esaYArAWOSLbtMZj76QCXA4ecCz1iLlPmu1Moc20TsEV7GA4C7TUbIOFXAcck+GtghZszX99cqyHAg8CA+3slcMK52pI8TiIYcRhY4OZmAb/JDVanyLCMtjdlfrVkmKyL3HgHMKy9j1Z9MoqJQ86Ilpg1diKG4ao2Kcr4VDK2xcy1OmM+rCpmFNjBnRYkrJkDjADfZAV9SpCfkIw5CWs6nJsNVpNiJxV0KzLWzrbTq9CG0pOfnbFmlWrOZNmpWYKP6ws8HM0QAI+64M92MVXsUCemvhQwvxHKpkHswFzQ0FfO4kA7ujT2kP5+FVgcNQAUU/6AYu89N26k1HA69VREAAPtKLh4+VXjPwFX1kl5c+ke4B3gnKMsB0uSg3mKoSfKyPmGTSXji4GXgS9yq7T/yL4BeBoYYzreLaX65laa25PWT0woU8USwByVbxVZ/IRkPB9Hg+xDAuN6ptU2W7BOAt6vowFGPZ5VFce563PAkP62FLs9Q84BH8elk9a1xVbYGpVfBDyuwhpwTm6zUVT+dY2fBe4pQ+YTWr8jbtJaUMO6nAxoAV4o6RxPS4mrXdX+WHM/AjeVKXuD3hmKmwzN0tIcjDAFv3Jf+RWgs4QULnXUw9LsdRXIv17vHYubDFmj3fUG1+ipiIIAL0rWbmPQMfNrdBlh+CiJy7m0HPRoCgVa7/4QlcL1z1OFxtF3VCRT+VDCR+mImbvX7bU7qQ12H/N7p8cxZ9zUaUdlGLJLR27Pm5WwW+AXyVpYUswGXKv8lHe1BDkFxW7QY1c5hvzLtWoB8IZkvQZcYWwAeEljFvwP1Ch/fpprBca7rJZNJOtaFwMeRnVuy0H+cskbbUT6XSKi+bP8fEdIuznI3pCWfkNBTK2qMwHAk2kFMVDkfdEMB8X+nVg3FWn8S9mrLWZ+VixJq5+yLbZnQqAH0jg36eW9srS3ZLxTyeB3n1LrBYqZ7g/t2Vky158YH27RXTGN1f0u69j4pQ0wZK67JjLcF9NYdWe1unYrblirsW7gpF1ElHtNmpMxTdrzZFDatRqnMnVxR3ekkYpngeJHPhrn+mkv2JWLYUs0QwBslU4jZX9g4BZ3Qbey7lpm63Oju6BbU+nL9vsE6hmmsdhGAViomDDsrEZAs36fQBfJDf/hkuIlRche+6uOWd1YhACzq6BFuWubfhLDLi7a8iB/wRhLhaty0zY9Jk45I/K54dTJBH5jQfdYPVIzRXfe6pq8/TWfRMImg67DGxHRLOQgu6BiNyrZk2Lj9atj9vuE2xBRhr5qOksRwH7FX8BIxSm2xtPp0z1VwLhcYbsan+VyyWY97Rq7U3dbB8S2Aywmes8Lm5CCPeouvVLlYlwXG90zhg5RZKxdammH5H5j7p9qxpT9hrSmK7GfuIDov4+/AVX8tzNEmwMGAAAAAElFTkSuQmCC">
+          <router-link to="/orders" class="fs-5 text-decoration-none text-white ms-3">Orders</router-link>
+        </button>
+      </div>
+
+      <div class="w-100 mt-2">
+        <button class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
+          <img height="30" width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCklEQVR4nO2aS2xVVRSGzxVaMZFWWqQoYIwTBYkDCM6IRGM6sChgWiXGoYbaBh0oUUwKOiOYRoc6MEYTiUo0qYgmxogBEWOoRikFHzzUmZX4DtbSz6zef8fl7Xncx7mXaviTM+je+6y91tnr8a99G0UX8D8FcBlwB7ATeAsYBc4Af+o5o7E9WnM70BrNBADNwEbgbWCCyjEho+82WdF5MOBiYDPwnVPqLLAP2AasB5YB84AmGTxPY+u15gOdVMC3QH/DDAJuBb50CnwGbDJFE9ZfYk/CXBvQKxkB5n431/sUngEmteHnQBdQyHjPjD6esaYArAWOSLbtMZj76QCXA4ecCz1iLlPmu1Moc20TsEV7GA4C7TUbIOFXAcck+GtghZszX99cqyHAg8CA+3slcMK52pI8TiIYcRhY4OZmAb/JDVanyLCMtjdlfrVkmKyL3HgHMKy9j1Z9MoqJQ86Ilpg1diKG4ao2Kcr4VDK2xcy1OmM+rCpmFNjBnRYkrJkDjADfZAV9SpCfkIw5CWs6nJsNVpNiJxV0KzLWzrbTq9CG0pOfnbFmlWrOZNmpWYKP6ws8HM0QAI+64M92MVXsUCemvhQwvxHKpkHswFzQ0FfO4kA7ujT2kP5+FVgcNQAUU/6AYu89N26k1HA69VREAAPtKLh4+VXjPwFX1kl5c+ke4B3gnKMsB0uSg3mKoSfKyPmGTSXji4GXgS9yq7T/yL4BeBoYYzreLaX65laa25PWT0woU8USwByVbxVZ/IRkPB9Hg+xDAuN6ptU2W7BOAt6vowFGPZ5VFce563PAkP62FLs9Q84BH8elk9a1xVbYGpVfBDyuwhpwTm6zUVT+dY2fBe4pQ+YTWr8jbtJaUMO6nAxoAV4o6RxPS4mrXdX+WHM/AjeVKXuD3hmKmwzN0tIcjDAFv3Jf+RWgs4QULnXUw9LsdRXIv17vHYubDFmj3fUG1+ipiIIAL0rWbmPQMfNrdBlh+CiJy7m0HPRoCgVa7/4QlcL1z1OFxtF3VCRT+VDCR+mImbvX7bU7qQ12H/N7p8cxZ9zUaUdlGLJLR27Pm5WwW+AXyVpYUswGXKv8lHe1BDkFxW7QY1c5hvzLtWoB8IZkvQZcYWwAeEljFvwP1Ch/fpprBca7rJZNJOtaFwMeRnVuy0H+cskbbUT6XSKi+bP8fEdIuznI3pCWfkNBTK2qMwHAk2kFMVDkfdEMB8X+nVg3FWn8S9mrLWZ+VixJq5+yLbZnQqAH0jg36eW9srS3ZLxTyeB3n1LrBYqZ7g/t2Vky158YH27RXTGN1f0u69j4pQ0wZK67JjLcF9NYdWe1unYrblirsW7gpF1ElHtNmpMxTdrzZFDatRqnMnVxR3ekkYpngeJHPhrn+mkv2JWLYUs0QwBslU4jZX9g4BZ3Qbey7lpm63Oju6BbU+nL9vsE6hmmsdhGAViomDDsrEZAs36fQBfJDf/hkuIlRche+6uOWd1YhACzq6BFuWubfhLDLi7a8iB/wRhLhaty0zY9Jk45I/K54dTJBH5jQfdYPVIzRXfe6pq8/TWfRMImg67DGxHRLOQgu6BiNyrZk2Lj9atj9vuE2xBRhr5qOksRwH7FX8BIxSm2xtPp0z1VwLhcYbsan+VyyWY97Rq7U3dbB8S2Aywmes8Lm5CCPeouvVLlYlwXG90zhg5RZKxdammH5H5j7p9qxpT9hrSmK7GfuIDov4+/AVX8tzNEmwMGAAAAAElFTkSuQmCC">
+          <router-link to="/vendors-requests" class="fs-5 text-decoration-none text-white ms-3">Vendors requests</router-link>
+        </button>
+      </div>
       <div class="w-100 mt-2">
         <button @click="showModal = true" class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
           <img height="30px" width="30px"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHwklEQVR4nO2dWcwURRCAGwURRY2gBAW8D9R4K0hQvOJ9RCG8mIhE8IoParxQohJvYxDRGCRGiRoV8ECNgGgkHohyGIyoKAmgCAreCII/Ap8ptzZp25nd2d2Z3Tn6S/blh66u6Z7p7qqurjbG4/F4PB6Px+PxeDz/AdgG6A2cBVwNjAYmAtOBmcB84Ev9zde/Tdf/M1rLSNkDRdZ/pXuqAvQABgMPAbOBv4gPkfWhypY6evguCe6EfYBrgFnAFprLF8Ao4OhCdw6wKzAC+LqBxlwP/Aos1d+v+rd6EV1uBnYxRQE4Dng24lC0EZgHjANuAAYCRwJdItTTVf/vIC07TueYvyPUuwF4Buhr8grQB3i7SkNsAt4DbgSOBzoloMd2wAn6JbyvdVZiBnCMyQvAwcArFeaGzcA0YJgMYy3QrxswXFdmoksQovvLwEEmqwDb6mTZFvKQvwFjgb1NulZ4o4AfQ3SW4e5+eTaTJXS4+SrkoZbrG9nRpBSgI3A58F3IMywC+pu0A2ytb1DQpy9v3bVZersofeXXhXwx8oz3yDObNCJLxZBJWxR/DNjRZBRgJ12lbQmZ9LuaNKHLy29CPu3jTU4ABoTYTcuAI0wa0CXkmgAlx2dpeKpxGHsi4Hl/b/nLB5wMrHUUE4PvMpNzgCEBXoE/gdNbpdC5Adb2KuBYUxCAY/WZXSv/rGYrcjSwzlHkW+AAUzAoufWXB3wpfZppPK1wFBDH3j6moAB7AIudNvle/p50xZ2BhU7F0jk9TcGh1CnSCTafAdsnWemTToVrU7PcSwHAUQGLnPFJVXaBU5F4Sc9OpLIMo4sd14N8XtyVdA9wH9wVayU5ArjXaavV4lWOs4KnnQpko6dDbBXkDKA9MNdps6fidItsdpZ0hVve1orsnTiGo7Th4XEIdh2GoxoWWhAoeYNtZjYq8DRHoCzrOsemcc4Bdgiw5E9tROBUR9jwWDUuAMAVThu+Vq+gfZ25Y6WfyOue4O2dx811bVtrdJ/NyDr08Zh/2/J2py0fqLUzttK1c5m/Yl1HFwxKdlybMxe3q0VAX6dHX0xU4wJAKYzIJnqsl1jhTuGLE9W2AABD6zYfgE+sgpsKFeuabECevUiaV0uopV1wdlJKFg3gY+dF7xR1W9Lm4aZoWwCAR522PSpKoUudQsOaom0BoBQNaXNJlEJyDMwmvyH5TQbo57Ttg1EKydk8m51jVKgX8BLwh/6mSJBAXuWFnFmxeT5KIQnLLyOhk1uZGNCH/YX/I6eeeuVNXoXYZzscdWqUQnIosswaExP65oUxOW/ywtAvr8ysKAU+twosN8ko4rImb/LCcByNC6MUkADpMstMTFR54N/zJi/ODllgFVhlYkInyDAm5U1enEPWB1aB9SbekEuZIF1+rifQjpTLi3NSn5zwsneyHl+Q36RGHpaUy4tr2TvGKdR4pISnIcPwKqfQRVULeerdXx8S9QRt/duNnlCAR+pxLnZ20k9493sr3e9acI6Tb2SHuJQqKvx/g2puI8HC1cc6T61buHc0EuQwI3JhTyCa78Umen4uCVFxzs3JeNc9sgBPtTCglTWFAamQO50evb4mAZ5KgXL3m1oB9nJOAq1MIn9V3gE6aNvZo82e9QqTrGr+K2mAAEN7SiPC9nNskp/8Ejg6knDHCckVTmlU6ARHoD9bWL/5MCOuFK5tjqGYnxyECQEcomk27LnjsLiE3+b0tOwq+gm+8kQu2VRtnjAxV2DH+wo+ojEEzapnsyr2BJ/Aoc7QJTtf3jXvIEkCHJ+VtNM5Jgk0161NW8OrhhxBcJakcUlWKC6V5wIyqcUzWWUYMfYCks98mmjyGSuFqh0IgVqiB5uCAuwNLGlZliTdrHfzQ0nExgBTMChFq3zX8ixJemxasnHayLp7oCkIhKf4O6NVCvXUm21wDKARcQVppxVJ9BmQc3JdQ5kaYrwHRLIDuczMY6Y5oFNAIrfy4qZ/mpxo9jGGMhLeP8jkBODEgLkzXYmUnWQDI0Pu43jcZBhKqcbHh6QafzN1qcZtgJMC1uOLTXaHpxt028FFrPG7U5uM3wbYzVF+jsleOvGrnJ0+9yKxfiYrALsndQKpCUv5BzXiPYiNGmuQ2rtPAgHOz0oWOkoRIXJc+a0qVx5JVHxvk0WA+5wHOrNGf9lQzfXYPgHdttd5bqReXBnWCWWmRYrBTTNO9mv5zHeqcy9hHfCunp2XyPFTgP2rXQ6jndpNva9yo+dNukpaUMO1eRNysTMqGUudh3s9Yrl2On5HpU39ZyvUsVe+WLKRq1oX6ZV96V3GxrBbNjhiwpuJNJ8tml/3lszODxFc86udq/Eq3rKjN0G7Cf7LY/fUgDCaRlivWwfyJV6Y+/DYgMQ1Y6rs048Iubv2ads5qVdkyPxxpRwg0n+fpoEE89WdUb6++x3gDeAFbXixJ87QuadD0e49X+q8jbtVSFgvVzkEMSET1m/a0bfXZmxAulSxTz6qMJ6PrDkq3BPYGV2csX6DWutyLvsYHWZ+qDC2f9+yTZ08ErA/sETH+KDr9NyvYmKulpmtRq3esJugKzErUw66DCWbd6MtKiFW8qtNv1auKIRsZbpsVuNLJuzdW61zbpH9Y/06yr+yHTBDO+pWcSrKhN9qXT0ej8fjMQXgHxsnufYXmdLHAAAAAElFTkSuQmCC">

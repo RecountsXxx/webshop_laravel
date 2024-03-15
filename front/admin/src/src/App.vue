@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <div class="row">
       <notifications width="300" size="4" />
-        <div v-if="isAuthenticated" class="col-sm-2 vh-100 bg-dark">
-          <NavComponent></NavComponent>
-        </div>
-        <div v-else class="container-fluid w-full w-100">
-          <LoginView></LoginView>
-        </div>
+      <div v-if="isAuthenticated" class="col-sm-2 overflow-y-none vh-100 h-100 bg-dark">
+        <NavComponent></NavComponent>
+      </div>
+      <div v-else class="container-fluid w-full w-100">
+        <LoginView></LoginView>
+      </div>
 
-      <div v-if="isAuthenticated" class="col-sm-10">
-        <router-view></router-view>
+      <div v-if="isAuthenticated" class="col-sm-10" style="overflow-y: auto;">
+        <router-view style="height: 100vh;"></router-view>
       </div>
     </div>
   </div>

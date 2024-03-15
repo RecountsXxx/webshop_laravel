@@ -50,7 +50,7 @@ class ProductService
     }
     public function index()
     {
-        return $this->productRepository->getProducts();
+        return $this->productRepository->getPaginatedProducts();
     }
     public function delete_image($id)
     {

@@ -12,9 +12,14 @@ class AdminRepository extends BaseRepository
     {
         parent::__construct($admin);
     }
+
+    public function getPaginateAdmins()
+    {
+        return $this->paginate(12);
+    }
+
     public function count()
     {
         return DB::table('admins')->count();
     }
-
 }

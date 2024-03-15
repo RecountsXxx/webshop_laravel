@@ -4,6 +4,7 @@ namespace App\Repositories\Category;
 
 use App\Models\Category\Category;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends BaseRepository
 {
@@ -11,11 +12,13 @@ class CategoryRepository extends BaseRepository
     {
         parent::__construct($category);
     }
-
-    public function get_product_on_category($category_id)
+    public function getPaginateCategories()
     {
-        $category = $this->findOrFail($category_id);
-       return $category->products;
+        return $this->paginate(12);
     }
 
+    public function count()
+    {
+        return DB::table('categories')->count();
+    }
 }

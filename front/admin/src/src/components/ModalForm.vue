@@ -24,6 +24,7 @@
 
 <script>
 import socket from "@/services/socket/SocketService.js";
+import {useToast} from "vue-toastification";
 
 export default {
   name: 'ModalForm',
@@ -37,10 +38,10 @@ export default {
       this.$emit('close');
     },
     addItem() {
+      let toast = useToast();
       if (this.newItemText.trim() !== '') {
         this.$emit('add', { text: this.newItemText });
-        console.log('input text: ' + this.newItemText);
-        this.$notify("Message sended");
+        toast.info('Message succesfully sended!');
         socket.emit('socket.message.admin', this.newItemText);
         this.newItemText = '';
         this.closeModal();
