@@ -52,6 +52,29 @@ class UserService {
             });
         }
     }
+
+    async JoinToVendor(data){
+        try {
+            await axios.post(`http://localhost/api/join-to-vendors`,data);
+            this.notification.notify({
+                title: 'Form his sended!',
+                type:'info'
+            });
+        } catch (error) {
+            this.handleError(error, 'Error send form');
+        }
+
+    }
+
+
+    handleError(error, message) {
+        console.error(`${message}:`, error);
+        const errorMessage = error.response ? error.response.data.message : 'Internal server error';
+        this.notification.notify({
+            title: errorMessage,
+            type:'error'
+        });
+    }
 }
 
 export default new UserService();

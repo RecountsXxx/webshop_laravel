@@ -11,11 +11,13 @@ class CategoryRepository extends BaseRepository
     {
         parent::__construct($category);
     }
-
+    public function getPaginatedCategories(){
+        return $this->paginate(2);
+    }
     public function get_product_on_category($category_id)
     {
         $category = $this->findOrFail($category_id);
-       return $category->products;
+       return $category->products()->with('images')->paginate(12);
     }
 
 }

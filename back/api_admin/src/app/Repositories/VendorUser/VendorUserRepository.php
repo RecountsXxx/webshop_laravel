@@ -2,7 +2,6 @@
 
 namespace App\Repositories\VendorUser;
 
-use App\Models\Vendor\Vendor;
 use App\Models\VendorUsers\VendorUser;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;

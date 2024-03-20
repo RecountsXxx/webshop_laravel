@@ -22,7 +22,7 @@ class JoinToVendorsService
     {
         $vendorRequest = $this->forTheVendorsRepository->findOrFail($id);
         \Laravel\Prompts\info('EMail: ' . $vendorRequest->email);
-        SendVendorsDataMailJob::dispatch(null,['email'=>$vendorRequest->email])->onQueue('upload.images.jobs');
+        SendVendorsDataMailJob::dispatch(null,['email'=>$vendorRequest->email])->onQueue('notifications.jobs');
         $this->forTheVendorsRepository->delete($vendorRequest);
 
         return response()->json(['message' => 'Vendor declined'], 200);
@@ -52,7 +52,7 @@ class JoinToVendorsService
 
         $this->userRepository->update($vendor_user,['vendor_id' => $vendor_shop->id]);
 
-        SendVendorsDataMailJob::dispatch($vendor_user,$data)->onQueue('upload.images.jobs');
+        SendVendorsDataMailJob::dispatch($vendor_user,$data)->onQueue('notifications.jobs');
         $this->forTheVendorsRepository->delete($vendorRequest);
 
         return response()->json(['message' => 'Vendor added successfully'], 200);

@@ -3,7 +3,6 @@
 namespace App\Services\Order;
 
 use App\Repositories\Order\OrderRepository;
-use Illuminate\Support\Facades\DB;
 
 class OrderService
 {

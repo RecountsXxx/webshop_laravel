@@ -4,8 +4,8 @@
       <div class="flex items-center gap-4">
         <img src="/logo.png" alt="Logo" class="w-11" />
         <div>
-          <h2 class="font-bold text-xl uppercase">Vue Sneakers</h2>
-          <p class="text-slate-400">Shop best sneakers</p>
+          <h2 class="font-bold text-xl uppercase">Vue Shop</h2>
+          <p class="text-slate-400">Shop best products</p>
         </div>
       </div>
     </router-link>
@@ -32,7 +32,7 @@
       <router-link to="/shopping-cart">
         <li class="flex items-center gap-3 cursor-pointer">
           <img src="/cart.svg" alt="Cart" />
-          <b>1205 $</b>
+          <b>1 $</b>
         </li>
       </router-link>
       <router-link to="/bookmarks">
@@ -53,7 +53,9 @@
 
 
 <script>
-export default{
-  name:'headerComponent',
-}
+
+export default {
+  name: 'headerComponent',
+};
+
 </script>

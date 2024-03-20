@@ -11,11 +11,13 @@ class BrandRepository extends BaseRepository
     {
         parent::__construct($brand);
     }
-
+    public function getPaginatedBrands(){
+        return $this->paginate(2);
+    }
     public function get_product_on_brand($brand_id)
     {
         $brand = $this->findOrFail($brand_id);
-        return $brand->products;
+        return $brand->products()->with('images')->paginate(12);
     }
 
 }

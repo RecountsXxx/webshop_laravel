@@ -10,3 +10,10 @@ import {Notifications} from "@kyvg/vue3-notification";
     <router-view></router-view>
   </div>
 </template>
+
+<style>
+body, h1, h2, h3, p, label
+{
+  font-family: 'Roboto', sans-serif;
+}
+</style>

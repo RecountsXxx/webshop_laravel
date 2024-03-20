@@ -33,8 +33,7 @@ RUN composer install
 RUN php /var/www/html/artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider"
 
 # Копирование конфигурационных файлов supervisord
-COPY supervisor_api.conf /etc/supervisor/conf.d/supervisor_api.conf
-COPY supervisor_upload_images.conf /etc/supervisor/conf.d/supervisor_upload_images.conf
+COPY supervisor_api.conf /etc/supervisor/conf.d/supervisor.conf
 
 # Открываем порт для доступа к приложению
 EXPOSE 8001

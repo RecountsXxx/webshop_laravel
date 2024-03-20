@@ -69,6 +69,7 @@ services:
       - db.mysql.main
       - db.redis.cache
 
+
   db.mysql.main:
     build:
       dockerfile: ./services/mysql/Dockerfile
@@ -82,6 +83,59 @@ services:
       - '3306:3306'
     networks:
       - sne
+
+  laravel.upload.images:
+    build:
+      dockerfile: Dockerfile_upload_images
+      context: ./back/api_admin
+    container_name: laravel.upload.images
+    volumes:
+      - ./back/api_admin/src:/var/www/html
+    env_file:
+      - .env
+    depends_on:
+      - db.mysql.main
+      - db.redis.cache
+      - db.redis.jobs
+    networks:
+      - sne
+
+  laravel.notifications:
+    build:
+      dockerfile: Dockerfile_notifications
+      context: ./back/api_admin
+    container_name: laravel.notifications
+    volumes:
+      - ./back/api_admin/src:/var/www/html
+    env_file:
+      - .env
+    depends_on:
+      - db.mysql.main
+      - db.redis.cache
+      - db.redis.jobs
+    networks:
+      - sne
+
+  db.redis.upload.images:
+    build:
+      dockerfile: Dockerfile
+      context: ./services/redis
+    container_name: db.redis.upload.images
+    volumes:
+      - ./volumes/db/redis/upload_images:/data
+    networks:
+      - sne
+
+  db.redis.notifications:
+    build:
+      dockerfile: Dockerfile
+      context: ./services/redis
+    container_name: db.redis.notifications
+    volumes:
+      - ./volumes/db/redis/notifications:/data
+    networks:
+      - sne
+
 
   db.redis.socket:
     build:

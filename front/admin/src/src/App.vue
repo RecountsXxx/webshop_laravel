@@ -5,7 +5,7 @@
       <div v-if="isAuthenticated" class="col-sm-2 overflow-y-none vh-100 h-100 bg-dark">
         <NavComponent></NavComponent>
       </div>
-      <div v-else class="container-fluid w-full w-100">
+      <div v-else class="container-fluid bg-black w-full w-100">
         <LoginView></LoginView>
       </div>
 
@@ -30,8 +30,9 @@ export default {
   },
   data() {
     return {
-      isAuthenticated: false
+      isAuthenticated: false,
     };
+
   },
   created() {
     this.updateAuthentication();

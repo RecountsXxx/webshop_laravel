@@ -37,13 +37,14 @@ class ProductService{
 
 
 
-    addToCart(id,title,price,img){
-        localStorage.setItem('product_' + id, JSON.stringify({ id: id, title: title, price: price, img: img }));
+    addToCart(id,title,price,img,vendor_id){
+        localStorage.setItem('product_' + id, JSON.stringify({ id: id, title: title, price: price, img: img, vendor_id:vendor_id }));
         this.notification.notify({
             title: "Added to cart 🎉",
             type:'warn'
         });
     }
+
     getAllCart() {
         const products = [];
         for (let i = 0; i < localStorage.length; i++) {
@@ -69,18 +70,40 @@ class ProductService{
         return localStorage.getItem('product_' + id);
     }
 
-    async getProducts(){
-       let response = await axios.get('http://localhost/api/products');
+    async sumbitOrder(data){
+        try{
+            await axios.post('http://localhost/api/make-order',data);
+            this.notification.notify({
+                title: "Order confirmed! 🎉",
+                type:'warn'
+            });
+        }catch (e){
+            console.error(e);
+        }
+
+    }
+
+    async addComment(data){
+        try{
+            await axios.post('http://localhost/api/comments',data);
+            this.notification.notify({
+                title: "Comment added! 🎉",
+                type:'warn'
+            });
+        }catch (e){
+            console.error(e);
+        }
+    }
+
+    async getProducts(pageNumber = 1){
+       let response = await axios.get('http://localhost/api/products?page='+pageNumber);
 
        console.log(response.data.data.products);
        return response.data.data.products;
     }
 
     async getProduct(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/products/' + id,{params});
+        let response = await axios.get('http://localhost/api/products/' + id);
 
         console.log(response.data.data.product);
         return response.data.data.product;

@@ -7,8 +7,11 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
+use App\Models\Product\Product;
 use App\Repositories\Product\ProductRepository;
 use App\Services\Product\ProductService;
+use Elastic\Elasticsearch\ClientBuilder;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -25,9 +28,9 @@ class ProductController extends Controller
         }
     }
 
-    public function show(ProductRequest $request){
+    public function show(string $id){
         try {
-            $products =  $this->productService->show_product($request->id);
+            $products =  $this->productService->show_product($id);
             return new BaseWithResponseResource(['product'=>$products], 'show one product','200');
         }
         catch (\Exception $e) {

@@ -1,39 +1,35 @@
 <template>
-  <div class="grid grid-cols-4 gap-10">
-    <h1 v-if="vendor">Vendor: {{vendor.vendor_name}}</h1>
-    <CardComponent
-        v-for="product in products"
-        :key="product.id"
-        :id="product.id"
-        :title="product.title"
-        :price="product.price"
-        :img="product.image"
-    />
+  <div class="ms-5  p-3">
+    <h1 class="text-3xl font-bold mb-4 ms-5">{{ vendor.vendor_name }}</h1>
+    <div class="mb-8 flex flex-row gap-5">
+      <img :src="vendor.image" alt="{{ vendor.vendor_name }}" class="rounded-lg object-contain ms-5 mb-4" style="width: 200px; height: 200px;">
 
+      <p class="text-gray-600"> {{ vendor.description }}</p>
+    </div>
   </div>
-</template>
 
+  <ProductsList :fetch-products-props="fetchProducts"></ProductsList>
+</template>
 
 <script>
 import VendorService from "@/Services/Vendor/VendorService";
-import CardComponent from "@/components/Card.vue";
+import ProductsList from "@/components/ProductsList.vue";
 
-export default{
-  name:'vendorComponent',
-  components: {CardComponent},
-  data(){
-    return{
-      vendor:null,
-      products:null,
+export default {
+  name: 'brandComponent',
+  components: {ProductsList},
+  data() {
+    return {
+      vendor: '',
     }
   },
-  async created(){
+  async created() {
     this.vendor = await VendorService.getVendorPerId(this.$route.params.id);
-    this.products = await VendorService.getProductsVendor(this.$route.params.id);
+  },
+  methods: {
+    async fetchProducts(pageNumber) {
+      return VendorService.getProductsVendor(this.$route.params.id,pageNumber);
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

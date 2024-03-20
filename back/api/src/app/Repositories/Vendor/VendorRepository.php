@@ -12,9 +12,14 @@ class VendorRepository extends BaseRepository
         parent::__construct($vendor);
     }
 
+    public function getPaginatedVendors(){
+        return $this->paginate(2);
+    }
+
     public function get_products_on_vendor($id){
-        $vendor = $this->findOrFail($id);
-        return $vendor->products;
+            $category = $this->findOrFail($id);
+        return $category->products()->with('images')->paginate(12);
+
     }
 
 }

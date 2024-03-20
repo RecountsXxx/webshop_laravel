@@ -29,9 +29,12 @@ import EditUser from "@/views/users/EditUser.vue";
 import HomeView from "@/views/HomeView.vue";
 import Orders from "@/views/orders/Orders.vue";
 import JoinToVendors from "@/views/join-to-vendors/JoinToVendors.vue";
+import AddVendorUser from "@/views/vendor-users/AddVendorUser.vue";
+import VendorUsers from "@/views/vendor-users/VendorUsers.vue";
+import EditVendorUser from "@/views/vendor-users/EditVendorUser.vue";
 
 const routes = [
-    { path: '/', component: App  },
+    { path: '/', component: HomeView  },
     { path: '/dashboard', component: HomeView  },
     { path: '/products', component: Products  },
     { path: '/add-product', component: AddProduct  },
@@ -49,8 +52,11 @@ const routes = [
     { path: '/add-user', component: AddUser  },
     { path: '/edit-user/:id', component: EditUser  },
     { path: '/admins', component: Admins  },
-    { path: '/add-admin', component: AddAdmin  },
     { path: '/edit-admin/:id', component: EditAdmin  },
+    { path: '/add-admin', component: AddAdmin  },
+    { path: '/vendor-users', component: VendorUsers  },
+    { path: '/add-vendor-user', component: AddVendorUser  },
+    { path: '/edit-vendor-user/:id', component: EditVendorUser  },
     { path: '/orders', component: Orders  },
     { path: '/vendors-requests', component: JoinToVendors  },
 
@@ -60,7 +66,10 @@ const router = createRouter({
     routes
 });
 const app = createApp(App)
-
+router.beforeEach((to, from, next) => {
+    document.title = 'Admin panel';
+    next();
+});
 app.use(createPinia())
 app.use(Toast, {
     transition: "Vue-Toastification__bounce",
@@ -69,3 +78,4 @@ app.use(Toast, {
 });
 app.use(router)
 app.mount('#app')
+

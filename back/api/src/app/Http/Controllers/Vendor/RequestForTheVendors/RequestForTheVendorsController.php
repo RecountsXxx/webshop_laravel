@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\RequestForTheVendors;
+namespace App\Http\Controllers\Vendor\RequestForTheVendors;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Order\OrderRequest;
 use App\Http\Requests\RequestForTheVendors\RequestForTheVendorsRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Services\Order\OrderService;
-use App\Services\RequestForTheVendors\RequestForTheVendorsService;
-use Illuminate\Http\Request;
+use App\Services\Vendor\RequestForTheVendors\RequestForTheVendorsService;
 
 class RequestForTheVendorsController extends Controller
 {

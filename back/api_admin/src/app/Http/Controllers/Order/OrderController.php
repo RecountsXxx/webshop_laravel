@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
 use App\Services\Order\OrderService;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {

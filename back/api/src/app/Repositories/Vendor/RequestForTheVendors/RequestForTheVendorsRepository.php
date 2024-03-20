@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\RequestForTheVendors;
+namespace App\Repositories\Vendor\RequestForTheVendors;
 
-use App\Models\RequestForTheVendors\RequestForTheVendors;
+use app\Models\Vendor\RequestForTheVendors\RequestForTheVendors;
 use App\Repositories\BaseRepository;
 
 class RequestForTheVendorsRepository extends BaseRepository

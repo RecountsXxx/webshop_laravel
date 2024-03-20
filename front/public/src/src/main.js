@@ -5,7 +5,6 @@ import {createRouter, createWebHistory} from "vue-router";
 import Notifications from '@kyvg/vue3-notification'
 
 import Login from "@/pages/Auth/Login.vue";
-import Home from "@/pages/Home/Home.vue";
 import Register from "@/pages/Auth/Register.vue";
 import Account from "@/pages/Account/Account.vue";
 import Bookmarks from "@/pages/Bookmark/Bookmarks.vue";
@@ -17,6 +16,7 @@ import Brand from "@/pages/Brand/Brand.vue";
 import BrandList from "@/pages/Brand/BrandList.vue";
 import CategoryList from "@/pages/Category/CategoryList.vue";
 import VendorList from "@/pages/Vendor/VendorList.vue";
+import Home from "@/pages/Home/Home.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -47,6 +47,7 @@ router.beforeEach((to, from, next) => {
 });
 
 const app = createApp(App)
+
 app.use(router)
 app.use(Notifications)
 app.mount('#app')

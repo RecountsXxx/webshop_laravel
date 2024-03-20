@@ -10,7 +10,7 @@ class VendorService
 
     public function show_all()
     {
-        return $this->vendorRepository->all();
+        return $this->vendorRepository->getPaginatedVendors();
     }
 
     public function show_per_id($id)

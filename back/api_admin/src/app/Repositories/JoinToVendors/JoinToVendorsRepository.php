@@ -2,7 +2,7 @@
 
 namespace App\Repositories\JoinToVendors;
 
-use App\Models\RequestForTheVendors\RequestForTheVendors;
+use app\Models\Vendor\RequestForTheVendors\RequestForTheVendors;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 

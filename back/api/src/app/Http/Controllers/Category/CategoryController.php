@@ -23,10 +23,10 @@ class CategoryController extends Controller
         }
     }
 
-    public function show(CategoryRequest $request)
+    public function show(string $id)
     {
         try {
-            $category =  $this->categoryService->show_per_id($request->id);
+            $category =  $this->categoryService->show_per_id($id);
             return new BaseWithResponseResource(['category'=>$category], 'show category','200');
         }
         catch (\Exception $e) {
@@ -34,10 +34,10 @@ class CategoryController extends Controller
         }
     }
 
-    public function get_products_on_category(CategoryRequest $request)
+    public function get_products_on_category(string $id)
     {
         try {
-            $products =  $this->categoryService->show_products_on_category($request->id);
+            $products =  $this->categoryService->show_products_on_category($id);
             return new BaseWithResponseResource(['products'=>$products], 'show products on category','200');
         }
         catch (\Exception $e) {

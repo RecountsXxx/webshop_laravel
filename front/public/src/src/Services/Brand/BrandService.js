@@ -2,27 +2,16 @@ import axios from 'axios';
 
 
 class BrandService {
-
     async getBrandPerId(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/brands/' + id,{params})
-        console.log(response);
+        let response = await axios.get('http://localhost/api/brands/' + id)
         return response.data.data.brand;
     }
-    async getBrands(){
-        let response = await axios.get('http://localhost/api/brands')
-
-        return response.data.data.brands;
+    async getBrands(pageNumber = 1){
+        let response = await axios.get('http://localhost/api/brands?page='+ pageNumber)
+        return response.data.data;
     }
-    async getProductsBrands(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/brand/products',{params})
-
-        console.log(response);
+    async getProductsBrands(id, pageNumber = 1){
+        let response = await axios.get('http://localhost/api/brand/products/'+id + '?page='+pageNumber)
         return response.data.data.products;
     }
 }

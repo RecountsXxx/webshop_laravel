@@ -1,28 +1,17 @@
 import axios from 'axios';
 
 
-class VendorService{
-
+class VendorService {
     async getVendorPerId(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/vendors/' + id,{params})
-        console.log(response);
+        let response = await axios.get('http://localhost/api/vendors/' + id)
         return response.data.data.vendor;
     }
-    async getVendors(){
-        let response = await axios.get('http://localhost/api/vendors')
-
-        return response.data.data.vendors;
+    async getVendors(pageNumber = 1){
+        let response = await axios.get('http://localhost/api/vendors?page='+ pageNumber)
+        return response.data.data;
     }
-    async getProductsVendor(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/vendor/products',{params})
-
-        console.log(response);
+    async getProductsVendor(id,pageNumber = 1){
+        let response = await axios.get('http://localhost/api/vendor/products/'+id + '?page=' + pageNumber)
         return response.data.data.products;
     }
 }

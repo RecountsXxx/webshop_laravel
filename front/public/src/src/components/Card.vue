@@ -29,6 +29,7 @@ export default {
     price: [String, Number],
     img: String,
     id: String,
+    vendor_id: String,
     isCartElement: Boolean,
   },
   data() {
@@ -54,7 +55,7 @@ export default {
     clickOrder() {
       this.isOrder = !this.isOrder;
       if (this.isOrder) {
-        ProductService.addToCart(this.id, this.title, this.price, this.img);
+        ProductService.addToCart(this.id, this.title, this.price, this.img,this.vendor_id);
       } else {
         ProductService.deleteFromCart(this.id);
         this.$emit('productRemoved', this.id);

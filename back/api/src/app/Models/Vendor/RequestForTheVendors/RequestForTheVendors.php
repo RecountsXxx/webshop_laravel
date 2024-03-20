@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\RequestForTheVendors;
+namespace App\Models\Vendor\RequestForTheVendors;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

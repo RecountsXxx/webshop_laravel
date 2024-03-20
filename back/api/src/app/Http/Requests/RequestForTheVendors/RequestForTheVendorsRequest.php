@@ -22,9 +22,9 @@ class RequestForTheVendorsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'shop_name'=>['required','string','min:3','max:50'],
+            'shop_name'=>['required','string','min:3','max:9','unique:vendors,vendor_name'],
             'description'=>['required','string','min:50','max:1000'],
-            'email'=>['required','email','min:3','max:256'],
+            'email'=>['required','email','min:3','max:256','unique:request_for_the_vendors,email','unique:vendor_users,email'],
         ];
     }
 }

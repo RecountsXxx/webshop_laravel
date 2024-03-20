@@ -17,6 +17,11 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
+    'elasticsearch' => [
+            'host' => env('ELASTICSEARCH_HOST', 'localhost'),
+            'port' => env('ELASTICSEARCH_PORT', 9200),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections

@@ -1,15 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Post\PostController;
-use App\Http\Controllers\Report\ReportCommentController;
-use App\Http\Controllers\Report\ReportPostController;
-use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,8 +36,9 @@ Route::prefix('admin')->group(function (){
 
     Route::apiResource('users',\App\Http\Controllers\User\UserController::class);
     Route::apiResource('admins',\App\Http\Controllers\Admin\AdminController::class);
+    Route::apiResource('vendor-users',\App\Http\Controllers\VendorUser\VendorUserController::class);
 
-    Route::apiResource('orders',\App\Http\Controllers\Order\OrderController::class)->except(['store','update','show']);
+    Route::apiResource('orders', \App\Http\Controllers\Order\OrderController::class)->except(['store','update','show']);
 
     Route::apiResource('join-to-vendors',\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class)->except(['store','update','show']);
     Route::get('/add-to-vendors/{id}',[\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class,'addToVendors']);

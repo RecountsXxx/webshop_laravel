@@ -73,8 +73,17 @@ return [
 
         'upload.images.jobs' => [
             'driver' => 'redis',
-            'connection' => 'avatars.jobs',
-            'queue' => env('REDIS_AVATARS_QUEUE', 'avatars.jobs'),
+            'connection' => 'upload.images.jobs',
+            'queue' => env('d', 'upload.images.jobs'),
+            'retry_after' => 90,
+            'block_for' => null,
+            'after_commit' => false,
+        ],
+
+        'notifications.jobs' => [
+            'driver' => 'redis',
+            'connection' => 'notifications.jobs',
+            'queue' => env('d', 'notifications.jobs'),
             'retry_after' => 90,
             'block_for' => null,
             'after_commit' => false,

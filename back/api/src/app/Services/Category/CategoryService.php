@@ -9,7 +9,7 @@ class CategoryService
 
     public function show_all()
     {
-        return $this->categoryRepository->all();
+        return $this->categoryRepository->getPaginatedCategories();
     }
     public function show_per_id($id)
     {

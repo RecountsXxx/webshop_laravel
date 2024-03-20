@@ -18,16 +18,14 @@
           <router-link to="/users" class="btn btn-primary stretched-link w-100">Show users</router-link>
         </div>
       </div>
-
-      <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #ae76e8;">
-        <img src="https://img.icons8.com/ios-glyphs/240/categorize.png" width="150px" height="150px" alt="...">
+      <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #70d284;">
+        <img src="https://img.icons8.com/ios/250/administrator-male--v1.png" width="150px" height="150px" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Categories count: {{category_count}}</h5>
-          <p class="card-text">You can see categories,delete categories and edit categories</p>
-          <router-link to="/categories" class="btn btn-primary stretched-link w-100">Show categories</router-link>
+          <h5 class="card-title">Vendor users count: {{vendor_users_count}}</h5>
+          <p class="card-text">You can see vendors users, delete vendors uses and edit users</p>
+          <router-link to="/brands" class="btn btn-primary stretched-link w-100">Show vendor users</router-link>
         </div>
       </div>
-
       <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #c54575;">
         <img src="https://img.icons8.com/ios/250/administrator-male--v1.png" width="150px" height="150px" alt="...">
         <div class="card-body">
@@ -37,8 +35,16 @@
         </div>
       </div>
 
+      <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #ae76e8;">
+        <img src="https://img.icons8.com/ios-glyphs/240/categorize.png" width="150px" height="150px" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Categories count: {{category_count}}</h5>
+          <p class="card-text">You can see categories,delete categories and edit categories</p>
+          <router-link to="/categories" class="btn btn-primary stretched-link w-100">Show categories</router-link>
+        </div>
+      </div>
       <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #bb9924;">
-        <img src="https://img.icons8.com/ios/250/post-office.png" width="150px" height="150px" alt="...">
+        <img src="https://img.icons8.com/pulsar-line/240/000000/kiosk-on-wheels.png" width="150px" height="150px" alt="...">
         <div class="card-body">
           <h5 class="card-title">Vendors count: {{vendors_count}}</h5>
           <p class="card-text">You can see vendors, delete vendors and edit vendors</p>
@@ -47,7 +53,7 @@
       </div>
 
       <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #10d4da;">
-        <img src="https://img.icons8.com/ios/250/comments--v1.png" width="150px" height="150px" alt="...">
+        <img src="https://img.icons8.com/pulsar-line/240/000000/tag.png" width="150px" height="150px" alt="...">
         <div class="card-body">
           <h5 class="card-title">Brands count: {{brands_count}}</h5>
           <p class="card-text">You can see brands, delete brands and edit brands</p>
@@ -56,11 +62,19 @@
       </div>
 
       <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #a5afaf;">
-        <img src="https://img.icons8.com/ios/250/comments--v1.png" width="150px" height="150px" alt="...">
+        <img src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/256/000000/external-logistics-shipping-delivery-kmg-design-detailed-outline-kmg-design-2.png" width="150px" height="150px" alt="...">
         <div class="card-body">
           <h5 class="card-title">Orders count: {{orders_count}}</h5>
-          <p class="card-text">You can see orders, delete orders</p>
+          <p class="card-text">You can see orders, delete orders and make order</p>
           <router-link to="/brands" class="btn btn-primary stretched-link w-100">Show orders</router-link>
+        </div>
+      </div>
+      <div class="card d-flex flex-row justify-content-center align-items-center" style="width: 27rem; height: 200px; background: #cc94d5;">
+        <img src="https://img.icons8.com/ios/250/comments--v1.png" width="150px" height="150px" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Join to vendors requests count: {{join_to_vendors_count}}</h5>
+          <p class="card-text">You can see joinup vendors request, and approve or decline</p>
+          <router-link to="/brands" class="btn btn-primary stretched-link w-100">Show requests</router-link>
         </div>
       </div>
     </div>
@@ -82,6 +96,8 @@ export default {
       vendors_count:'1',
       brands_count:'1',
       orders_count:'1',
+      join_to_vendors_count:'1',
+      vendor_users_count:'1',
     };
   },
   created() {
@@ -100,6 +116,9 @@ export default {
         this.vendors_count = response.data.data[0].vendors;
         this.brands_count = response.data.data[0].brands;
         this.orders_count = response.data.data[0].orders;
+        this.join_to_vendors_count = response.data.data[0].join_to_vendors;
+        this.vendor_users_count = response.data.data[0].vendor_users;
+
       } catch (error) {
         console.error('Error:', error.response);
         toast.info('Error!');

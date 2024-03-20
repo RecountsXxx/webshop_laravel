@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Order;
+namespace App\Http\Controllers\Product\Order;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Order\OrderRequest;
+use App\Http\Requests\Product\Order\OrderRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Services\Order\OrderService;
-use Illuminate\Http\Request;
+use App\Services\Product\Order\OrderService;
 
 class OrderController extends Controller
 {
     public function __construct(private OrderService $orderService){}
-
     public function __invoke(OrderRequest $orderRequest)
     {
         $data = [

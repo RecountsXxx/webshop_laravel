@@ -41,7 +41,6 @@ export default {
   methods: {
     async login(){
         await AuthService.login(this.email,this.password);
-        this.$router.push('dashboard')
     }
   }
 }

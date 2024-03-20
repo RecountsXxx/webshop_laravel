@@ -2,27 +2,16 @@ import axios from 'axios';
 
 
 class CategoryService {
-
     async getCategoryPerId(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/categories/' + id,{params})
-        console.log(response);
+        let response = await axios.get('http://localhost/api/categories/' + id)
         return response.data.data.category;
     }
-    async getCategories(){
-        let response = await axios.get('http://localhost/api/categories')
-
-        return response.data.data.categories;
+    async getCategories(pageNumber = 1){
+        let response = await axios.get('http://localhost/api/categories?page='+ pageNumber)
+        return response.data.data;
     }
-    async getProductsCategory(id){
-        const params={
-            id:id
-        }
-        let response = await axios.get('http://localhost/api/category/products',{params})
-
-        console.log(response);
+    async getProductsCategory(id,pageNumber = 1){
+        let response = await axios.get('http://localhost/api/category/products/'+id + '?page=' + pageNumber);
         return response.data.data.products;
     }
 }

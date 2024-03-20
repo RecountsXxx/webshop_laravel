@@ -23,10 +23,10 @@ class BrandController extends Controller
         }
     }
 
-    public function show(BrandRequest $request)
+    public function show(string $id)
     {
         try {
-            $brand =  $this->brandService->show_per_id($request->id);
+            $brand =  $this->brandService->show_per_id($id);
             return new BaseWithResponseResource(['brand'=>$brand], 'show brand','200');
         }
         catch (\Exception $e) {
@@ -34,11 +34,11 @@ class BrandController extends Controller
         }
     }
 
-    public function get_products_on_brand(BrandRequest $request)
+    public function get_products_on_brand(string $id)
     {
         try {
-            $products =  $this->brandService->get_products_on_brand($request->id);
-            return new BaseWithResponseResource(['products'=>$products], 'show product on category','200');
+            $products =  $this->brandService->get_products_on_brand($id);
+            return new BaseWithResponseResource(['products'=>$products], 'show product on brand','200');
         }
         catch (\Exception $e) {
             return new InternalServerErrorResource(['error' => $e->getMessage()]);

@@ -8,13 +8,11 @@ class BrandService
 {
     public function __construct(private BrandRepository $brandRepository){}
 
-    public function show_all()
-    {
-        return $this->brandRepository->all();
+    public function show_all(){
+        return $this->brandRepository->getPaginatedBrands();
     }
 
-    public function show_per_id($id)
-    {
+    public function show_per_id($id){
         return $this->brandRepository->findOrFail($id);
     }
 

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Repositories\Order;
-use App\Models\Order\Order;
+namespace App\Repositories\Product\Order;
+use App\Models\Product\Order\Order;
 use App\Repositories\BaseRepository;
 
 class OrderRepository extends BaseRepository
