@@ -63,17 +63,10 @@
 </template>
 
 <script>
-import CardComponent from "@/components/Card.vue";
+import ProductService from "@/Services/Product/ProductService";
 export default{
   name:'productsList',
   components: {CardComponent},
-  props:{
-    productsProps:Array,
-    fetchProductsProps: {
-      type: Function,
-      required: true
-    }
-  },
   data(){
     return{
       products: [],
@@ -91,24 +84,9 @@ export default{
       return Math.ceil(this.totalRows / this.perPage);
     },
     filteredProducts() {
-      let filteredProducts = this.products.filter(product => {
+      return this.products.filter(product => {
         return product.title.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
-
-      if (this.minPrice !== null) {
-        filteredProducts = filteredProducts.filter(product => product.price >= this.minPrice);
-      }
-      if (this.maxPrice !== null) {
-        filteredProducts = filteredProducts.filter(product => product.price <= this.maxPrice);
-      }
-
-      if (this.sortBy === 'price_asc') {
-        filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (this.sortBy === 'price_desc') {
-        filteredProducts.sort((a, b) => b.price - a.price);
-      }
-
-      return filteredProducts;
     }
   },
   async created(){
@@ -116,7 +94,7 @@ export default{
   },
   methods:{
     async fetchProducts(){
-      const response = await this.fetchProductsProps(this.currentPage);
+      const response = await ProductService.getProducts(this.currentPage);
       console.log(response);
       this.products = response.data;
       this.totalRows = response.total;

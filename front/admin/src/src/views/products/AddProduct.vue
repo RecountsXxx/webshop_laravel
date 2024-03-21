@@ -16,6 +16,14 @@
           <input type="text" class="form-control" id="price" v-model="formData.price" required>
         </div>
         <div class="mb-3">
+          <label for="price" class="form-label">New price</label>
+          <input type="text" class="form-control" id="new_price" v-model="formData.new_price">
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Count</label>
+          <input type="text" class="form-control" id="price" v-model="formData.count" required>
+        </div>
+        <div class="mb-3">
           <label for="category" class="form-label">Category</label>
           <select class="form-select" id="category" v-model="formData.category_id" required>
             <option value="" disabled selected>Choose category</option>
@@ -56,11 +64,13 @@ export default {
       formData: {
         title: '',
         description: '',
-        price: 123.2,
+        price: 100,
         category_id: '',
         vendor_id: '',
         brand_id: '',
-        images: []
+        count: 1,
+        new_price: '',
+
       },
       categories: [],
       vendors: [],
@@ -79,11 +89,12 @@ export default {
       formData.append('category_id', this.formData.category_id);
       formData.append('vendor_id', this.formData.vendor_id);
       formData.append('brand_id', this.formData.brand_id);
-      formData.append('images[]', this.formData.images[0]);
-      formData.append('images[]', this.formData.images[1]);
+      formData.append('count', this.formData.count);
+      if(this.formData.new_price != ''){
+        formData.append('new_price', this.formData.new_price);
+      }
       const product = await ProductService.addProduct(formData)
       if(product != null) {
-        if (this.formData.images.length > 2) {
           for (const image of this.formData.images) {
             const formData = new FormData();
             formData.append('image', image);
@@ -91,7 +102,6 @@ export default {
 
             await ProductService.addImage(formData);
           }
-        }
       }
     },
     async fetchCategories() {

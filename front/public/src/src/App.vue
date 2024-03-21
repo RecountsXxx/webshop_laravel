@@ -1,19 +1,25 @@
 <script setup>
-import HeaderComponent from "@/components/Header.vue";
+import HeaderComponent from "@/components/General/Header.vue";
 import {Notifications} from "@kyvg/vue3-notification";
+import FooterComponent from "@/components/General/Footer.vue";
+
 </script>
 
 <template>
   <notifications class="m-2" />
-  <div class="bg-white w-3/5 m-auto rounded-xl shadow-xl shadow-grey-200 mt-20">
+  <div class="bg-white">
     <HeaderComponent />
     <router-view></router-view>
+    <FooterComponent/>
   </div>
 </template>
 
 <style>
+@import "style.css";
 body, h1, h2, h3, p, label
 {
   font-family: 'Roboto', sans-serif;
 }
 </style>
+
+

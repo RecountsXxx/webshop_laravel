@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ProductService from "@/Services/Product/ProductService";
+import ProductService from "@/services/Product/ProductService";
 
 export default {
   name: 'cardComponent',

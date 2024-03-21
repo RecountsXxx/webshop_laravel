@@ -16,6 +16,14 @@
           <input type="text" class="form-control" id="price" v-model="formData.price" required>
         </div>
         <div class="mb-3">
+          <label for="price" class="form-label">New price</label>
+          <input type="text" class="form-control" id="price" v-model="formData.new_price" required>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Count</label>
+          <input type="text" class="form-control" id="price" v-model="formData.count" required>
+        </div>
+        <div class="mb-3">
           <label for="category" class="form-label">Category</label>
           <select class="form-select" id="category" v-model="formData.category_id" required>
             <option value="" disabled selected>Choose category</option>
@@ -79,7 +87,9 @@ export default {
         category_id: '',
         vendor_id: '',
         brand_id: '',
-        images: []
+        images: [],
+        new_price:'',
+        count:'',
       },
       images:[],
       categories: [],
@@ -97,6 +107,8 @@ export default {
     this.formData.category_id = this.product.category_id;
     this.formData.vendor_id = this.product.vendor_id;
     this.formData.brand_id = this.product.brand_id;
+    this.formData.new_price = this.product.new_price;
+    this.formData.count = this.product.count;
     this.formData.images = this.product.images;
   },
   methods: {

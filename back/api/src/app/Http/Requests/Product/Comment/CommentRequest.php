@@ -22,7 +22,7 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'text'=>['string','required','min:3','max:100'],
+            'text'=>['string','required','min:3','max:1000'],
             'rating'=>['integer','min:0','max:5','required'],
             'product_id'=>['integer','required','exists:products,id'],
             'author_id'=>['integer','required','exists:users,id'],

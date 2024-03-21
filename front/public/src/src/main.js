@@ -3,48 +3,24 @@ import './style.css';
 import App from './App.vue';
 import {createRouter, createWebHistory} from "vue-router";
 import Notifications from '@kyvg/vue3-notification'
-
-import Login from "@/pages/Auth/Login.vue";
-import Register from "@/pages/Auth/Register.vue";
-import Account from "@/pages/Account/Account.vue";
-import Bookmarks from "@/pages/Bookmark/Bookmarks.vue";
-import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart.vue";
-import ProductDetails from "@/components/ProductDetails.vue";
-import Category from "@/pages/Category/Category.vue";
-import Vendor from "@/pages/Vendor/Vendor.vue";
-import Brand from "@/pages/Brand/Brand.vue";
-import BrandList from "@/pages/Brand/BrandList.vue";
-import CategoryList from "@/pages/Category/CategoryList.vue";
-import VendorList from "@/pages/Vendor/VendorList.vue";
-import Home from "@/pages/Home/Home.vue";
+import Home from "@/pages/HomePage.vue";
+import ShopPage from "@/pages/ShopPage.vue";
+import ProductDetails from "@/components/ProductComponents/ProductDetails.vue";
+import LoginPage from "@/pages/auth/LoginPage.vue";
+import RegisterPage from "@/pages/auth/RegisterPage.vue";
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
-    { path: '/bookmarks', component: Bookmarks },
-    { path: '/shopping-cart', component: ShoppingCart },
+    { path: '/login', component: LoginPage },
+    { path: '/register', component: RegisterPage },
+    { path: '/shop', component: ShopPage },
     {path: '/product/:id', component: ProductDetails},
-    {path: '/category/:id', component: Category},
-    {path: '/vendor/:id', component: Vendor},
-    {path: '/brand/:id', component: Brand},
-    {path: '/brands-list', component: BrandList},
-    {path: '/categories-list', component: CategoryList},
-    {path: '/vendors-list', component: VendorList},
-    { path: '/account', component: Account, meta: { requiresAuth: true } },
 ];
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !localStorage.getItem('user')) {
-        next('/login');
-    } else {
-        next();
-    }
-});
 
 const app = createApp(App)
 

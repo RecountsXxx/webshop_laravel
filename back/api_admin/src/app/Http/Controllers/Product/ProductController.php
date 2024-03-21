@@ -32,24 +32,17 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            $imagePaths = [];
-
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('images');
-                $imagePaths[] = $imagePath;
-            }
-
             $data = [
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
+                'new_price' => $request->new_price,
+                'count'=>$request->count,
                 'category_id' => $request->category_id,
                 'vendor_id' => $request->vendor_id,
                 'brand_id' => $request->brand_id,
             ];
             $product =$this->productService->store($data);
-            $data = ['image_paths'=>$imagePaths,'id'=>$product->id];
-            UploadProductImageJob::dispatch($data)->onQueue('upload.images.jobs');
 
             return new BaseWithResponseResource(['product' => $product], 'created product');
         } catch (\Exception $e) {

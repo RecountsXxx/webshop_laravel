@@ -9,11 +9,13 @@
           <th>Id</th>
           <th>Title</th>
           <th>Price</th>
+          <th>New price</th>
+          <th>Count</th>
+          <th>Rating 1-5</th>
           <th>Image</th>
           <th>Category name</th>
           <th>Brand name</th>
           <th>Vendor name</th>
-          <th>Created at</th>
         </tr>
         </thead>
         <tbody>
@@ -21,11 +23,13 @@
           <td>{{ product.id }}</td>
           <td>{{ truncateString(product.title, 35) }}</td>
           <td>{{ product.price }}</td>
+          <td>{{ product.new_price }}</td>
+          <td>{{ product.count }}</td>
+          <td>{{ product.rating }}</td>
           <td><img :src="product.images[0].image" width="35px" height="35px"></td>
           <td>{{ product.category.category_name }}</td>
           <td>{{ product.brand.brand_name }}</td>
           <td>{{ product.vendor.vendor_name }}</td>
-          <td>{{ product.created_at }}</td>
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete</button>
             <a :href="`http://localhost/product/${product.id}`"><button class="btn btn-success">View</button></a>
