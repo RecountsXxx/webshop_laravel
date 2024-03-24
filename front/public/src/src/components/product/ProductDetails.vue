@@ -11,8 +11,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="product__details__breadcrumb">
-              <a href="./index.html">Home</a>
-              <a href="./shop.html">Shop</a>
+              <router-link to="/home"><span>Home</span></router-link>
+              <router-link to="/shop"><span>Shop</span></router-link>
               <span>Product Details</span>
             </div>
           </div>
@@ -54,12 +54,12 @@
                   <i v-for="index in 5" :key="index" :class="{ 'fa fa-star m-1 text-warning': index <= product.rating, 'fa fa-star-o m-1 text-warning': index > product.rating }"></i>
                 <span> - {{product.count_rating}} Reviews</span>
               </div>
-              <h3>{{product.price}}$  <span v-if="product.new_price > 0">{{product.new_price}}$</span></h3>
+              <h3>{{product.new_price}}$  <span v-if="product.new_price > 0">{{product.price}}$</span></h3>
               <p>{{product.description}}</p>
               <div class="product__details__cart__option">
                 <div class="quantity">
                   <div class="pro-qty">
-                    <input type="text" value="1">
+                    <input v-model="countInCart" type="text" value="1">
                   </div>
                 </div>
                 <label @click="clickOrder" class="primary-btn">Add to cart</label>
@@ -194,7 +194,7 @@
   </section>
 </template>
 <script>
-import ProductService from "@/services/Product/ProductService";
+import ProductService from "@/services/product/ProductService";
 
 export default{
   name:'productDetails',
@@ -202,6 +202,7 @@ export default{
     return {
       isLiked: false,
       isOrder: false,
+      countInCart:1,
       product: '',
       newReview: {
         text: '',
@@ -220,19 +221,21 @@ export default{
     clickBookmark() {
       this.isLiked = !this.isLiked;
       if (this.isLiked) {
-        ProductService.addToBookmark(this.id, this.title, this.price, this.image);
+        ProductService.addToBookmark(this.id, this.title, this.new_price ? this.new_price : this.price, this.image);
       } else {
         ProductService.deleteFromBookmark(this.id);
         this.$emit('productRemoved', this.id);
       }
     },
     clickOrder() {
-      this.isOrder = !this.isOrder;
-      if (this.isOrder) {
-        ProductService.addToCart(this.id, this.title, this.price, this.image,this.vendor_id);
-      } else {
-        ProductService.deleteFromCart(this.id);
-        this.$emit('productRemoved', this.id);
+      if(this.product.count > 0){
+        ProductService.addToCart(this.product.id, this.product.title, this.product.new_price ? this.product.new_price : this.product.price, this.product.images[0].image,this.product.vendor_id, this.countInCart);
+      }
+      else{
+        this.$notify({
+          title: "Products his not instock 🎉",
+          type: 'error'
+        });
       }
     },
     async addReview() {

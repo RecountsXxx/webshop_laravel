@@ -17,6 +17,7 @@ class OrderController extends Controller
             'full_name'=>$orderRequest->full_name,
             'address'=>$orderRequest->address,
             'email'=>$orderRequest->email,
+            'count'=>$orderRequest->count,
             'type_payment'=>$orderRequest->type_payment,
             'product_id'=>$orderRequest->product_id,
             'vendor_id'=>$orderRequest->vendor_id,

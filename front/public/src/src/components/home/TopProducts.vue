@@ -1,5 +1,8 @@
 <template>
   <section class="product spad mt-3">
+    <div v-if="loading && products != null" class="flex justify-center items-center h-screen">
+      <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -17,6 +20,7 @@
                        :new_price=product.new_price
                        :count=product.count
                        :rating=product.rating
+                       :vendor_id=product.vendor_id
                        :image=product.images[0].image>
           </ProductCard>
         </div>
@@ -25,8 +29,8 @@
   </section>
 </template>
 <script>
-import ProductCard from "@/components/ProductComponents/ProductCard.vue";
-import ProductService from "@/services/Product/ProductService";
+import ProductCard from "@/components/product/ProductCard.vue";
+import ProductService from "@/services/product/ProductService";
 
 export default{
   name:'TopProducts',
@@ -34,11 +38,13 @@ export default{
   data(){
     return{
       products:[],
+      loading: true,
     }
   },
   async created(){
    let response = await ProductService.getProducts();
     this.products = response.data;
+    this.loading = false;
     console.log(this.products)
   }
 }

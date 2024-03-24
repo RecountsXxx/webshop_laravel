@@ -27,6 +27,7 @@ class OrderRequest extends FormRequest
             'address'=>['string','required','min:3','max:256'],
             'product_id'=>['integer','required','exists:products,id'],
             'vendor_id'=>['integer','required','exists:vendors,id'],
+            'count'=>['integer','required'],
             'type_payment'=>['string','required','min:3','max:21']
         ];
     }

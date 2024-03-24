@@ -31,7 +31,7 @@ Route::prefix('auth')->group(function () {
 
 // Products
 Route::apiResource('products', ProductController::class)->only(['index', 'show']);
-
+Route::post('filter/products', [ProductController::class,'filteredProducts']);
 Route::apiResource('comments', CommentController::class)->only(['store', 'show']);
 // Brands
 Route::apiResource('brands', BrandController::class)->only(['index', 'show']);

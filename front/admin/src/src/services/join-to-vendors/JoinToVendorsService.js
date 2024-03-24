@@ -9,7 +9,6 @@ class JoinToVendorsService{
             const response = await axios.get('http://localhost/api/admin/join-to-vendors/?page=' + pageNumber);
             return response.data.data;
         } catch (error) {
-            this.toast.error(error.request.data);
             console.error('Error fetching requests:', error);
         }
     }

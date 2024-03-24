@@ -17,11 +17,6 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
 
-    'elasticsearch' => [
-            'host' => env('ELASTICSEARCH_HOST', 'localhost'),
-            'port' => env('ELASTICSEARCH_PORT', 9200),
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -135,19 +130,19 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => env('REDIS_DB', '0'),
+            'host' => env('REDIS_CACHE_HOST', '127.0.0.1'),
+            'username' => env('REDIS_CACHE_USERNAME'),
+            'password' => env('REDIS_CACHE_PASSWORD'),
+            'port' => env('REDIS_CACHE_PORT', '6379'),
+            'database' => env('REDIS_CACHE_DB', '0'),
         ],
 
         'cache' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
+            'host' => env('REDIS_CACHE_HOST', '127.0.0.1'),
+            'username' => env('REDIS_CACHE_USERNAME'),
+            'password' => env('REDIS_CACHE_PASSWORD'),
+            'port' => env('REDIS_CACHE_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
 

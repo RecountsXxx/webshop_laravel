@@ -2,14 +2,14 @@
 
 namespace App\Repositories\JoinToVendors;
 
-use app\Models\Vendor\RequestForTheVendors\RequestForTheVendors;
+use App\Models\JoinToVendors\JoinToVendors;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
 class JoinToVendorsRepository extends BaseRepository
 {
     protected $model;
-    public function __construct( RequestForTheVendors $forTheVendors)
+    public function __construct( JoinToVendors $forTheVendors)
     {
         parent::__construct($forTheVendors);
     }

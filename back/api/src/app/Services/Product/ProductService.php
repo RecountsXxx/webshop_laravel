@@ -16,4 +16,8 @@ class ProductService
     {
         return $this->productRepository->getProductPerId($product_id);
     }
+
+    public function filteredProducts($filter){
+        return $this->productRepository->filteredProducts($filter);
+    }
 }

@@ -32,15 +32,6 @@
             <ul>
               <li class="active"><router-link to="/">Home</router-link></li>
               <li><router-link to="/shop">Shop</router-link></li>
-              <li><a href="#">Pages</a>
-                <ul class="dropdown">
-                  <li><router-link to="/about">About Us</router-link></li>
-                  <li><router-link to="/shop-details">Shop Details</router-link></li>
-                  <li><router-link to="/shopping-cart">Shopping Cart</router-link></li>
-                  <li><router-link to="/checkout">Check Out</router-link></li>
-                  <li><router-link to="/blog-details">Blog Details</router-link></li>
-                </ul>
-              </li>
               <li><router-link to="/blog">Blog</router-link></li>
               <li><router-link to="/contact">Contacts</router-link></li>
             </ul>
@@ -49,9 +40,8 @@
         <div class="col-lg-3 col-md-3">
           <div class="header__nav__option">
             <a href="#" class="search-switch"><img src="../../assets/img/icon/search.png" alt=""></a>
-            <a href="#"><img src="../../assets/img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="../../assets/img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            <router-link to="/wishlist"><img src="../../assets/img/icon/heart.png" alt=""></router-link>
+            <router-link to="/shopping-cart"><img class="mt-1" src="../../assets/img/icon/cart.png" alt=""></router-link>
           </div>
         </div>
       </div>

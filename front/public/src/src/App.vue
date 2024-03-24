@@ -1,7 +1,7 @@
 <script setup>
-import HeaderComponent from "@/components/General/Header.vue";
+import HeaderComponent from "@/components/general/Header.vue";
 import {Notifications} from "@kyvg/vue3-notification";
-import FooterComponent from "@/components/General/Footer.vue";
+import FooterComponent from "@/components/general/Footer.vue";
 
 </script>
 

@@ -69,6 +69,8 @@ class ProductController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
+                'new_price' => $request->new_price,
+                'count'=>$request->count,
                 'category_id' => $request->category_id,
                 'vendor_id' => $request->vendor_id,
                 'brand_id' => $request->brand_id,

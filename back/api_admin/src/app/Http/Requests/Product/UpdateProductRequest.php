@@ -25,6 +25,8 @@ class UpdateProductRequest extends FormRequest
             'title' => ['string', 'required', 'min:3', 'max:56'],
             'description' => ['string', 'required', 'min:50', 'max:1000'],
             'price' => ['numeric', 'required', 'between:1,1000000000'],
+            'count' => ['integer','required'],
+            'new_price' => ['numeric', 'between:1,1000000000'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'vendor_id' => ['required', 'integer', 'exists:vendors,id'],
             'brand_id' => ['required', 'integer', 'exists:brands,id'],

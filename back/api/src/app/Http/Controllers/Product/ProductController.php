@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Product\ProductFilterRequest;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
@@ -37,4 +38,27 @@ class ProductController extends Controller
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }
     }
+
+    public function filteredProducts(Request $request)
+    {
+        try {
+            $filter = [
+                'title' => $request->title,
+                'vendor' => $request->vendor,
+                'category' => $request->category,
+                'brand' => $request->brand,
+                'minPrice' => $request->minPrice,
+                'maxPrice' => $request->maxPrice,
+                'sort' => $request->sort,
+            ];
+
+            $products = $this->productService->filteredProducts($filter);
+            return new BaseWithResponseResource(['products'=>$products], 'show one product','200');
+        }
+        catch (\Exception $e) {
+            return new InternalServerErrorResource(['error' => $e->getMessage()]);
+        }
+    }
+
+
 }

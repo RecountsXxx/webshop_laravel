@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\JoinToVendors;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RequestForTheVendors\RequestForTheVendorsRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
 use App\Services\JoinToVendors\JoinToVendorsService;

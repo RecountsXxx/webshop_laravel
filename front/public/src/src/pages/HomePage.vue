@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import BannerCarousel from "@/components/HomeComponents/BannerCarousel.vue";
-import TopProducts from "@/components/HomeComponents/TopProducts.vue";
+import BannerCarousel from "@/components/home/BannerCarousel.vue";
+import TopProducts from "@/components/home/TopProducts.vue";
 
 export default {
   name:'homePage',

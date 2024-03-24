@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="request in filteredRequests" style="height: 50px;" :key="request.id">
+        <tr  v-for="request in filteredRequests" style="height: 50px;" :key="request.id">
           <td>{{ request.id }}</td>
           <td>{{ request.email }}</td>
           <td>{{ request.shop_name }}</td>
@@ -73,8 +73,8 @@ export default {
   methods: {
     async fetchRequests() {
         const response = await JoinToVendorsService.fetchRequests(this.currentPage);
-        this.requests = response.requests.data;
-        this.totalRows = response.requests.total;
+          this.requests = response.requests.data;
+          this.totalRows = response.requests.total;
     },
     async deleteRequest(requestId) {
         await JoinToVendorsService.deleteRequest(requestId);

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->double('price');
-            $table->double('new_price');
+            $table->double('new_price')->nullable();
             $table->integer('rating')->default(0);
             $table->bigInteger('count_rating')->default(0);
             $table->bigInteger('count')->default(0);

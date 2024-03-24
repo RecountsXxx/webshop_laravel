@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Vendor\RequestForTheVendors;
 
-use app\Models\Vendor\RequestForTheVendors\RequestForTheVendors;
+use App\Models\Vendor\RequestForTheVendors\RequestForTheVendors;
 use App\Repositories\BaseRepository;
 
 class RequestForTheVendorsRepository extends BaseRepository

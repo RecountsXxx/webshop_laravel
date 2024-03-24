@@ -45,7 +45,7 @@
         </div>
 </template>
 <script>
-import ProductService from "@/services/Product/ProductService";
+import ProductService from "@/services/product/ProductService";
 
 export default{
   name:'productCard',
@@ -57,6 +57,7 @@ export default{
     rating:String,
     count:String,
     image:String,
+    vendor_id:String,
   },
   data() {
     return {
@@ -72,19 +73,21 @@ export default{
     clickBookmark() {
       this.isLiked = !this.isLiked;
       if (this.isLiked) {
-        ProductService.addToBookmark(this.id, this.title, this.price, this.image);
+        ProductService.addToBookmark(this.id, this.title, this.new_price ? this.new_price : this.price, this.image);
       } else {
         ProductService.deleteFromBookmark(this.id);
         this.$emit('productRemoved', this.id);
       }
     },
     clickOrder() {
-      this.isOrder = !this.isOrder;
-      if (this.isOrder) {
-        ProductService.addToCart(this.id, this.title, this.price, this.image,this.vendor_id);
-      } else {
-        ProductService.deleteFromCart(this.id);
-        this.$emit('productRemoved', this.id);
+      if (this.count > 0) {
+      ProductService.addToCart(this.id, this.title, this.new_price ? this.new_price : this.price, this.image, this.vendor_id);
+    }
+    else{
+        this.$notify({
+          title: "Products his not instock 🎉",
+          type: 'error'
+        });
       }
     }
   }

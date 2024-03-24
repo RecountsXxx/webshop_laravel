@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import UserService from "@/services/User/UserService";
+import UserService from "@/services/user/UserService";
 
 export default {
   name: 'registerComponent',

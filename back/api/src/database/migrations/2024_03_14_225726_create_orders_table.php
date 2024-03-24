@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('vendor_id');
             $table->unsignedBigInteger('product_id');
+            $table->bigInteger('count')->default(1);
             $table->string('full_name');
             $table->string('address');
             $table->string('email');
