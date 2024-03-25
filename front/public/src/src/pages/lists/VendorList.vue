@@ -9,10 +9,12 @@
     <hr>
     <br>
     <div v-for="vendor in filteredVendors" :key="vendor.id" class="mt-2 relative flex flex-col w-full border border-slate-100 rounded-xl p-8 cursor-pointer transition hover:shadow-xl hover:transform hover:-translate-y-2">
-      <router-link :to="'/vendor/' + vendor.id">
-        <img width="100px" height="100px" :src="vendor.image" alt="Sneaker" />
-      <p class="text-3xl">{{ vendor.vendor_name }}</p>
-      <p>{{ vendor.description }}</p>
+      <router-link :to="'/shop/vendor/' + vendor.vendor_name">
+        <div class="flex flex-row text-center align-middle items-center">
+          <img width="100px" height="100px" :src="vendor.image" alt="Sneaker" />
+          <h2 class="text-3xl mt-2 text-center">{{ vendor.vendor_name }}</h2>
+        </div>
+        <p>{{ vendor.description }}</p>
       </router-link>
     </div>
     <ul class="pagination flex justify-center mt-4">
@@ -42,7 +44,7 @@
 </template>
 
 <script>
-import VendorService from "@/Services/Vendor/VendorService";
+import VendorService from "@/services/vendor/VendorService";
 export default{
   data(){
     return{

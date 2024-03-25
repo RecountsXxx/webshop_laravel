@@ -36,6 +36,22 @@
               <li><router-link to="/shop">Shop</router-link></li>
               <li><router-link to="/blog">Blog</router-link></li>
               <li><router-link to="/contact">Contacts</router-link></li>
+              <li>
+                <div id="dropdownDefaultButton" class="flex flex-row" data-dropdown-toggle="dropdown">
+                 <label style="font-size: 1.15rem;" class="font-medium">Pages</label>
+                  <svg class="w-2.5 h-2.5 ms-2 mt-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                  </svg>
+                </div>
+                <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-96 dark:bg-gray-700">
+                  <ul class="flex justify-center py-2 p-3 text-sm text-center text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li><router-link class="text-center" to="/categories">Categories</router-link></li>
+                    <li><router-link to="/vendors">Vendors</router-link></li>
+                    <li><router-link to="/brands">Brands</router-link></li>
+                  </ul>
+                </div>
+              </li>
+
             </ul>
           </nav>
         </div>

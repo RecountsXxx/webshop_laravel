@@ -1,18 +1,20 @@
 <template>
   <div class="p-3">
-    <h1 class="text-3xl ms-5">Categories list</h1>
-    <p class="ms-5">Here you can explore the list of categories on our platform.</p>
+    <h1 class="text-3xl ms-5">Brands list</h1>
+    <p class="ms-5">Here you can explore the list of brands on our platform.</p>
     <input class="mb-3 ms-5 mt-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
            type="text" v-model="searchQuery" placeholder="Search...">
 
     <br>
     <hr>
     <br>
-    <div v-for="category in filteredCategories" :key="category.id" class="mt-2 relative flex flex-col w-full border border-slate-100 rounded-xl p-8 cursor-pointer transition hover:shadow-xl hover:transform hover:-translate-y-2">
-      <router-link :to="'/category/' + category.id">
-        <img width="100px" height="100px" :src="category.image" alt="Sneaker" />
-        <p class="text-3xl">{{ category.category_name }}</p>
-        <p>{{ category.description }}</p>
+    <div v-for="brand in filteredBrands" :key="brand.id" class="mt-2 relative flex flex-col w-full border border-slate-100 rounded-xl p-8 cursor-pointer transition hover:shadow-xl hover:transform hover:-translate-y-2">
+      <router-link :to="'/shop/brand/' + brand.brand_name">
+        <div class="flex flex-row text-center align-middle items-center">
+          <img width="100px" height="100px" :src="brand.image" alt="Sneaker" />
+          <h2 class="text-3xl mt-2 text-center">{{ brand.category_name }}</h2>
+        </div>
+        <p>{{ brand.description }}</p>
       </router-link>
     </div>
     <ul class="pagination flex justify-center mt-4">
@@ -42,11 +44,11 @@
 </template>
 
 <script>
-import CategoryService from "@/Services/Category/CategoryService";
+import BrandService from "@/services/brand/BrandService";
 export default{
   data(){
     return{
-      categories:[],
+      brands:[],
       searchQuery: '',
       currentPage: 1,
       perPage: 2,
@@ -57,37 +59,37 @@ export default{
     totalPages() {
       return Math.ceil(this.totalRows / this.perPage);
     },
-    filteredCategories() {
-      return this.categories.filter(category => {
-        return category.category_name.toLowerCase().includes(this.searchQuery.toLowerCase());
+    filteredBrands() {
+      return this.brands.filter(brand => {
+        return brand.brand_name.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     }
   },
   async created(){
-    await this.fetchCategories();
+    await this.fetchBrands();
   },
   methods:{
-    async fetchCategories(){
-      const response = await CategoryService.getCategories(this.currentPage);
-      this.categories = response.categories.data;
-      this.totalRows = response.categories.total;
+    async fetchBrands(){
+      const response = await BrandService.getBrands(this.currentPage);
+      this.brands = response.brands.data;
+      this.totalRows = response.brands.total;
     },
     goToPage(page) {
       if (page !== this.currentPage) {
         this.currentPage = page;
-        this.fetchCategories();
+        this.fetchBrands();
       }
     },
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
-        this.fetchCategories();
+        this.fetchBrands();
       }
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
-        this.fetchCategories();
+        this.fetchBrands();
       }
     },
   }

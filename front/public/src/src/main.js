@@ -12,7 +12,11 @@ import ContactPage from "@/pages/ContactPage.vue";
 import ShoppingCartPage from "@/pages/ShoppingCartPage.vue";
 import WishlistPage from "@/pages/WishlistPage.vue";
 import AccountPage from "@/pages/AccountPage.vue";
+import CategoryList from "@/pages/lists/CategoryList.vue";
+import VendorList from "@/pages/lists/VendorList.vue";
+import BrandList from "@/pages/lists/BrandList.vue";
 
+import 'flowbite';
 
 const routes = [
     { path: '/', component: Home },
@@ -23,6 +27,12 @@ const routes = [
     { path: '/wishlist', component: WishlistPage },
     { path: '/shopping-cart', component: ShoppingCartPage },
     {path: '/product/:id', component: ProductDetails},
+    {path: '/categories', component: CategoryList},
+    {path: '/vendors', component: VendorList},
+    {path: '/brands', component: BrandList},
+    {path: '/shop/category/:category', component: ShopPage},
+    {path: '/shop/vendor/:vendor', component: ShopPage},
+    {path: '/shop/brand/:brand', component: ShopPage},
     { path: '/account', component: AccountPage, meta: { requiresAuth: true } },
 ];
 const router = createRouter({

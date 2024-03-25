@@ -165,7 +165,11 @@ export default{
     }
   },
   async created(){
-    await this.fetchProducts();
+    this.$route.params.category != null ? this.selectedCategory = this.$route.params.category : this.selectedCategory = 'All categories';
+    this.$route.params.vendor != null ? this.selectedVendor = this.$route.params.vendor : this.selectedVendor = 'All vendors';
+    this.$route.params.brand != null ? this.selectedBrand = this.$route.params.brand : this.selectedBrand = 'All brands';
+
+    await this.searchProducts();
     await this.fetchBrands();
     await this.fetchVendors();
     await this.fetchCategories();
@@ -176,7 +180,6 @@ export default{
         this.loading = true;
         const formData = new FormData();
 
-        // Добавляем параметры поиска
         this.addFormDataItemIfNotEmpty(formData, 'title', this.searchQuery.trim());
         this.addFormDataItemIfNotEmpty(formData, 'vendor', this.selectedVendor, 'All vendors');
         this.addFormDataItemIfNotEmpty(formData, 'category', this.selectedCategory, 'All categories');
