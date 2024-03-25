@@ -29,7 +29,10 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
-
+router.beforeEach((to, from, next) => {
+    document.title = 'Male Fashion';
+    next();
+});
 router.beforeEach((to, from, next) => {
     const user = localStorage.getItem('user');
 

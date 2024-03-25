@@ -6,7 +6,7 @@
           <div class="breadcrumb__text">
             <h4>Wishlist</h4>
             <div class="breadcrumb__links">
-              <router-link to="/home"><span>Home</span></router-link>
+              <router-link to="/"><span>Home</span></router-link>
               <router-link to="/shop"><span>Shop</span></router-link>
               <span>Wishlist</span>
             </div>

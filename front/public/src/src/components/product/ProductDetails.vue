@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="product__details__breadcrumb">
-              <router-link to="/home"><span>Home</span></router-link>
+              <router-link to="/"><span>Home</span></router-link>
               <router-link to="/shop"><span>Shop</span></router-link>
               <span>Product Details</span>
             </div>

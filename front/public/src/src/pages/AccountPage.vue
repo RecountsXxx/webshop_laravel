@@ -48,15 +48,11 @@ export default {
   methods: {
     submitForm()
     {
-      const formData = {
-        shopName: this.shopName,
-        description: this.description,
-        email: this.user.email
-      };
-
-      console.log(UserService.getUser().user);
-
-      console.log(formData); // Временный вывод данных формы в консоль
+      let formData = new FormData();
+      formData.append('shop_name',this.shopName);
+      formData.append('email',this.user.email);
+      formData.append('description',this.description);
+      UserService.JoinToVendor(formData);
     }
   }
 }

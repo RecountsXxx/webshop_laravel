@@ -7,7 +7,7 @@
             <div class="breadcrumb__text">
               <h4>Shop</h4>
               <div class="breadcrumb__links">
-                <router-link to="/home"><span>Shop</span></router-link>
+                <router-link to="/"><span>Shop</span></router-link>
                 <span>All products</span>
               </div>
             </div>
