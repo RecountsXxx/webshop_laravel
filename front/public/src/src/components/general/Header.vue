@@ -11,8 +11,10 @@
           <div class="col-lg-6 col-md-5">
             <div class="header__top__right">
               <div class="header__top__links">
-                <router-link to="/login"><label href="#">Sign in</label></router-link>
-
+                <router-link v-if="inAuth" to="/account"><a href="#">Account</a></router-link>
+                <a v-if="inAuth" @click="loggout" href="#">Sign out</a>
+                <router-link v-else to="/login"><a href="#">Sign in</a></router-link>
+                <router-link to="/account"><a href="#">Become a seller</a></router-link>
                 <a href="#">FAQs</a>
               </div>
             </div>
@@ -30,7 +32,7 @@
         <div class="col-lg-6 col-md-6">
           <nav class="header__menu mobile-menu">
             <ul>
-              <li class="active"><router-link to="/">Home</router-link></li>
+              <li><router-link to="/">Home</router-link></li>
               <li><router-link to="/shop">Shop</router-link></li>
               <li><router-link to="/blog">Blog</router-link></li>
               <li><router-link to="/contact">Contacts</router-link></li>
@@ -51,8 +53,20 @@
 </template>
 
 <script>
+import UserService from "@/services/user/UserService";
+
 export default {
-  name:'headerComponent'
+  name:'headerComponent',
+  data(){
+    return{
+      inAuth:  UserService.getUser() != null ? true : false
+    }
+  },
+  methods: {
+   async loggout(){
+      await UserService.loggout();
+    }
+  }
 }
 </script>
 

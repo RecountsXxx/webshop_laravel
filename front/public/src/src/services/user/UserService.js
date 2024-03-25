@@ -5,7 +5,7 @@ class UserService {
     getUser() {
         const userString = localStorage.getItem('user');
         if (userString) {
-            return JSON.parse(userString);
+            return JSON.parse(userString).user;
         } else {
             return null;
         }
@@ -13,7 +13,14 @@ class UserService {
     saveUser(user) {
         localStorage.setItem('user', JSON.stringify(user));
     }
-
+    async loggout() {
+        let token = JSON.parse(localStorage.getItem('user')).authorisation.token;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        localStorage.removeItem('user');
+        let response = await axios.get('/api/auth/logout');
+        window.location.assign('/');
+        console.log(response);
+    }
     async register(name,email,password){
         try{
             let response = await axios.post('/api/auth/register',{
@@ -43,7 +50,8 @@ class UserService {
                 title: "Login successfull 🎉",
                 type:'warn'
             });
-            this.saveUser(response.data.data.user);
+            this.saveUser(response.data.data);
+            window.location.assign('/');
         }catch(error){
             console.error(error);
             this.notification.notify({

@@ -120,8 +120,8 @@
       </div>
     </div>
   </section>
-  <div v-else class="flex justify-center items-center shopping-cart spad">
-    <h1 class="text-2xl p-8 text-neutral-400">Empty! 😳</h1>
+  <div v-else class="p-10 py-10 flex justify-center items-center shopping-cart spad">
+    <h1 class="text-9xl p-8 py-10 text-neutral-400">Empty! 😳</h1>
   </div>
 </template>
 

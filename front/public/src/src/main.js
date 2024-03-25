@@ -11,6 +11,7 @@ import RegisterPage from "@/pages/auth/RegisterPage.vue";
 import ContactPage from "@/pages/ContactPage.vue";
 import ShoppingCartPage from "@/pages/ShoppingCartPage.vue";
 import WishlistPage from "@/pages/WishlistPage.vue";
+import AccountPage from "@/pages/AccountPage.vue";
 
 
 const routes = [
@@ -22,12 +23,22 @@ const routes = [
     { path: '/wishlist', component: WishlistPage },
     { path: '/shopping-cart', component: ShoppingCartPage },
     {path: '/product/:id', component: ProductDetails},
+    { path: '/account', component: AccountPage, meta: { requiresAuth: true } },
 ];
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
 
+router.beforeEach((to, from, next) => {
+    const user = localStorage.getItem('user');
+
+    if (to.meta.requiresAuth && !user) {
+        next('/login');
+    } else {
+        next();
+    }
+});
 
 const app = createApp(App)
 

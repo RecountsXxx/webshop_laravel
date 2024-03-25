@@ -195,6 +195,7 @@
 </template>
 <script>
 import ProductService from "@/services/product/ProductService";
+import UserService from "@/services/user/UserService";
 
 export default{
   name:'productDetails',
@@ -239,25 +240,32 @@ export default{
       }
     },
     async addReview() {
-      if (this.newReview.text.trim() !== "" && this.newReview.rating > 0) {
-        const review = {
-          text: this.newReview.text,
-          rating: this.newReview.rating,
-          product_id: this.$route.params.id,
-          author_id: 1,
-          created_at: new Date().toISOString()
-        };
-        await ProductService.addComment(review);
-        console.log('Добавленный отзыв:', review);
-        this.product.comments.push({
-          text: this.newReview.text,
-          rating: this.newReview.rating,
-          author: 'asd',
-          created_at: review.created_at
+      if(UserService.getUser() != null) {
+        if (this.newReview.text.trim() !== "" && this.newReview.rating > 0) {
+          const review = {
+            text: this.newReview.text,
+            rating: this.newReview.rating,
+            product_id: this.$route.params.id,
+            author_id: 1,
+            created_at: new Date().toISOString()
+          };
+          await ProductService.addComment(review);
+          console.log('Добавленный отзыв:', review);
+          this.product.comments.push({
+            text: this.newReview.text,
+            rating: this.newReview.rating,
+            author: 'asd',
+            created_at: review.created_at
+          });
+          this.newReview.text = '';
+          this.newReview.rating = 0;
+        }
+      }
+      else{
+        this.$notify({
+          title: "Please login in account 🎉",
+          type: 'error'
         });
-        // Сброс полей формы
-        this.newReview.text = '';
-        this.newReview.rating = 0;
       }
     },
     nextSlide() {
