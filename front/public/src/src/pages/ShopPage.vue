@@ -83,6 +83,7 @@
                 </div>
               </div>
             </div>
+            <label class="ms-72 mt-20 text-6xl text-center" v-if="totalRows == 0">Not found!</label>
             <div v-if="loading && filteredProducts != null" class="flex justify-center items-center h-screen">
               <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
             </div>
@@ -99,28 +100,28 @@
                              :image=product.images[0].image>
                 </ProductCard>
               </div>
-              <ul class="pagination flex justify-center mt-4">
-                <li :class="{ 'opacity-50 pointer-events-none': currentPage === 1 }">
-                  <button @click="prevPage"
-                          class="py-2 px-4 border border-gray-300 rounded-l hover:bg-gray-200 focus:outline-none">
-                    Previous
-                  </button>
-                </li>
-                <li v-for="page in totalPages" :key="page"
-                    :class="{ 'opacity-50 pointer-events-none': page === currentPage }">
-                  <button @click="goToPage(page)"
-                          class="py-2 px-4 border-t border-b border-gray-300 hover:bg-gray-200 focus:outline-none">
-                    {{ page }}
-                  </button>
-                </li>
-                <li :class="{ 'opacity-50 pointer-events-none': currentPage === totalPages }">
-                  <button @click="nextPage"
-                          class="py-2 px-4 border border-gray-300 rounded-r hover:bg-gray-200 focus:outline-none">
-                    Next
-                  </button>
-                </li>
-              </ul>
             </div>
+            <ul class="pagination flex justify-center mt-4">
+              <li :class="{ 'opacity-50 pointer-events-none': currentPage === 1 }">
+                <button @click="prevPage"
+                        class="py-2 px-4 border border-gray-300 rounded-l hover:bg-gray-200 focus:outline-none">
+                  Previous
+                </button>
+              </li>
+              <li v-for="page in totalPages" :key="page"
+                  :class="{ 'opacity-50 pointer-events-none': page === currentPage }">
+                <button @click="goToPage(page)"
+                        class="py-2 px-4 border-t border-b border-gray-300 hover:bg-gray-200 focus:outline-none">
+                  {{ page }}
+                </button>
+              </li>
+              <li :class="{ 'opacity-50 pointer-events-none': currentPage === totalPages }">
+                <button @click="nextPage"
+                        class="py-2 px-4 border border-gray-300 rounded-r hover:bg-gray-200 focus:outline-none">
+                  Next
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
