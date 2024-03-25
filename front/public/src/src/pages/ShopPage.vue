@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-    </section>>
+    </section>
 
     <section class="shop spad">
       <div class="container">
@@ -83,8 +83,8 @@
                 </div>
               </div>
             </div>
-            <label class="ms-72 mt-20 text-6xl text-center" v-if="totalRows == 0">Not found!</label>
-            <div v-if="loading && filteredProducts != null" class="flex justify-center items-center h-screen">
+            <label class="ms-72 mt-20 text-6xl text-center" v-if="totalRows == 0 && !loading">Not found!</label>
+            <div v-if="loading && filteredProducts != null" class="flex justify-center mt-20">
               <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
             </div>
             <div v-if="products.length > 0" class="row">
