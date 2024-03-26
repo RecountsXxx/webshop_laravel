@@ -11,7 +11,7 @@
           </ul>
         </div>
       </div>
-      <div class="row product__filter">
+      <div v-if="products.length > 0" class="row product__filter">
         <div :key="product.id" v-for="product in products" class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
           <ProductCard :key="product.id"
                        :id="product.id"

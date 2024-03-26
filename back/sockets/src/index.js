@@ -61,6 +61,7 @@ Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
             console.debug('disconnect: ' + socket.handshake.address);
         })
         socket.on('socket.message.admin', (message) => {
+            console.log(message);
             io.emit('socket.message.admin', message);
         });
     })

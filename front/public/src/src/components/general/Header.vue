@@ -70,7 +70,8 @@
 
 <script>
 import UserService from "@/services/user/UserService";
-
+import io from 'socket.io-client';
+import {useNotification} from "@kyvg/vue3-notification";
 export default {
   name:'headerComponent',
   data(){
@@ -82,10 +83,17 @@ export default {
    async loggout(){
       await UserService.loggout();
     }
-  }
+  },
+  mounted() {
+   let notification = useNotification()
+    this.socket = io('http://localhost');
+    this.socket.on('socket.message.admin', (messageData) => {
+      notification.notify({
+        title: 'From site: ' + messageData,
+        type:'info'
+      });
+    });
+  },
+
 }
 </script>
-
-<style scoped>
-/* Стили компонента (если необходимо) */
-</style>

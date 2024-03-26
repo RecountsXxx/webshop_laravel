@@ -15,7 +15,7 @@ class VendorUserRepository extends BaseRepository
 
     public function getPaginateUsers()
     {
-        return $this->paginate(12);
+        return $this->model->with('vendor')->paginate(12);
     }
 
     public function count()

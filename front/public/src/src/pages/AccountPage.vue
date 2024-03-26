@@ -52,7 +52,7 @@ export default {
       formData.append('shop_name',this.shopName);
       formData.append('email',this.user.email);
       formData.append('description',this.description);
-      UserService.JoinToVendor(formData);
+      UserService.joinToVendor(formData);
     }
   }
 }

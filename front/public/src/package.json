@@ -16,6 +16,7 @@
     "core-js": "^3.8.3",
     "flowbite": "^2.3.0",
     "pinia": "^2.1.7",
+    "socket.io-client": "^4.7.5",
     "vue": "^3.2.13",
     "vue-notifications": "^1.0.2",
     "vue-router": "^4.3.0"

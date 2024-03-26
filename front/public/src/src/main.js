@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import './style.css';
+import 'flowbite';
 import App from './App.vue';
 import {createRouter, createWebHistory} from "vue-router";
 import Notifications from '@kyvg/vue3-notification'
@@ -15,9 +16,6 @@ import AccountPage from "@/pages/AccountPage.vue";
 import CategoryList from "@/pages/lists/CategoryList.vue";
 import VendorList from "@/pages/lists/VendorList.vue";
 import BrandList from "@/pages/lists/BrandList.vue";
-
-import 'flowbite';
-
 const routes = [
     { path: '/', component: Home },
     { path: '/login', component: LoginPage },
@@ -54,7 +52,6 @@ router.beforeEach((to, from, next) => {
 });
 
 const app = createApp(App)
-
 app.use(router)
 app.use(Notifications)
 app.mount('#app')

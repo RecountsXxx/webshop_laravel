@@ -20,7 +20,6 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <!-- Фотография здесь -->
             <div class="carousel relative rounded-lg flex justify-center overflow-hidden">
               <div class="relative flex justify-center">
                 <div class="duration-700 flex justify-center ease-in-out">
@@ -28,7 +27,6 @@
                 </div>
               </div>
 
-              <!-- Кнопки навигации -->
               <button @click="prevSlide" type="button"
                       class="flex absolute top-1/2 left-3 z-40 items-center justify-center w-10 h-10 bg-gray-200/50 rounded-full hover:bg-gray-300 focus:outline-none transition"
                       data-carousel-prev>
@@ -116,7 +114,7 @@
               <div class="col-md-6">
                 <form @submit.prevent="addReview" class="my-4 w-full">
                 <label for="review" class="block font-medium text-gray-700 text-2xl">Write review:</label>
-                <textarea v-model="newReview.text" id="review" name="review" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                <textarea required v-model="newReview.text" id="review" name="review" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                 <div class="flex items-center mt-2">
                   <label class="block text-2xl font-medium text-gray-700 mr-4">Stars:</label>
                   <div class="mt-3" v-for="star in 5" :key="star.id">
@@ -187,8 +185,6 @@
             </ul>
           </div>
         </div>
-
-
       </div>
     </div>
   </section>
@@ -197,50 +193,64 @@
 import ProductService from "@/services/product/ProductService";
 import UserService from "@/services/user/UserService";
 
-export default{
-  name:'productDetails',
+export default {
+  name: 'productDetails',
   data() {
     return {
       isLiked: false,
       isOrder: false,
-      countInCart:1,
+      countInCart: 1,
       product: '',
       newReview: {
         text: '',
         rating: 0
       },
-      loading:true,
+      loading: true,
       currentIndex: 0,
       slides: []
     };
   },
   mounted() {
-    this.isLiked = ProductService.getBookmarkProductStatus(this.id);
-    this.isOrder = ProductService.getCartProductStatus(this.id);
+    this.loadProductDetails();
   },
   methods: {
-    clickBookmark() {
-      this.isLiked = !this.isLiked;
-      if (this.isLiked) {
-        ProductService.addToBookmark(this.id, this.title, this.new_price ? this.new_price : this.price, this.image);
-      } else {
-        ProductService.deleteFromBookmark(this.id);
-        this.$emit('productRemoved', this.id);
+    async loadProductDetails() {
+      const productId = this.$route.params.id;
+      try {
+        this.product = await ProductService.getProduct(productId);
+        this.slides = this.product.images.map(item => item.image);
+        this.isLiked = ProductService.getBookmarkProductStatus(productId);
+        this.isOrder = ProductService.getCartProductStatus(productId);
+        this.loading = false;
+      } catch (error) {
+        console.error('Error product:', error);
       }
     },
-    clickOrder() {
-      if(this.product.count > 0){
-        ProductService.addToCart(this.product.id, this.product.title, this.product.new_price ? this.product.new_price : this.product.price, this.product.images[0].image,this.product.vendor_id, this.countInCart);
+    async clickBookmark() {
+      this.isLiked = !this.isLiked;
+      const { id, title, new_price, price, images } = this.product;
+      const image = images[0].image;
+      if (this.isLiked) {
+        ProductService.addToBookmark(id, title, new_price || price, image);
+      } else {
+        ProductService.deleteFromBookmark(id);
+        this.$emit('productRemoved', id);
       }
-      else{
+    },
+    async clickOrder() {
+      if (this.product.count > 0) {
+        const { id, title, new_price, price, images, vendor_id } = this.product;
+        const image = images[0].image;
+        ProductService.addToCart(id, title, new_price || price, image, vendor_id, this.countInCart);
+      } else {
         this.$notify({
-          title: "Products his not instock 🎉",
+          title: "Error product🎉",
           type: 'error'
         });
       }
     },
     async addReview() {
-      if(UserService.getUser() != null) {
+      if (UserService.getUser() != null) {
         if (this.newReview.text.trim() !== "" && this.newReview.rating > 0) {
           const review = {
             text: this.newReview.text,
@@ -250,7 +260,6 @@ export default{
             created_at: new Date().toISOString()
           };
           await ProductService.addComment(review);
-          console.log('Добавленный отзыв:', review);
           this.product.comments.push({
             text: this.newReview.text,
             rating: this.newReview.rating,
@@ -260,61 +269,41 @@ export default{
           this.newReview.text = '';
           this.newReview.rating = 0;
         }
-      }
-      else{
+      } else {
         this.$notify({
-          title: "Please login in account 🎉",
+          title: "Please sign in account 🎉",
           type: 'error'
         });
       }
     },
     nextSlide() {
-      if (this.currentIndex < this.slides.length - 1) {
-        this.currentIndex++;
-      } else {
-        this.currentIndex = 0;
-      }
+      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     },
     prevSlide() {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      } else {
-        this.currentIndex = this.slides.length - 1;
-      }
+      this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
     },
     formatDate(dateTimeString) {
       const date = new Date(dateTimeString);
-      const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-      const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
-      const hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-      const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-      const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
       return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     },
     calculateProgressBarWidth(product, star) {
       const totalComments = product.comments.length;
       const starComments = product.comments.filter(comment => comment.rating === star).length;
-      return `${(starComments / totalComments) * 100}%`;
+      return totalComments ? `${(starComments / totalComments) * 100}%` : '0%';
     },
     calculateCommentsCount(comments, star) {
       return comments.filter(comment => comment.rating === star).length;
     }
-  },
-  async created() {
-    try {
-      const productId = this.$route.params.id;
-      this.product = await ProductService.getProduct(productId);
-      this.product.images.forEach((item) => {
-        this.slides.push(item.image);
-      });
-      this.loading = false;
-    } catch (error) {
-      console.error('Ошибка загрузки продукта:', error);
-    }
   }
 }
 </script>
+
 <style scoped>
 .review-list ul li .left span {
   width: 32px;

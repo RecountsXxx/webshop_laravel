@@ -111,7 +111,7 @@
                   </select>
                 </div>
                 <div class="flex items-center justify-between">
-                  <label class="primary-btn w-100" type="submit">Proceed to checkout</label>
+                  <label @click="submitOrder" class="primary-btn w-100" type="submit">Proceed to checkout</label>
                 </div>
               </form>
             </ul>
@@ -174,7 +174,7 @@ export default {
         this.formData.product_id = product.id;
         this.formData.count = product.count;
         this.formData.address = this.selectedCity.Description + ' | ' + this.selectedWarehouse.Description;
-        ProductService.sumbitOrder(this.formData);
+        ProductService.submitOrder(this.formData);
         console.log(product);
       });
     },
@@ -215,7 +215,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

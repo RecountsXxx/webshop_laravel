@@ -233,7 +233,6 @@ export default{
         console.error('Error fetching categories:', error);
       }
     },
-
     async fetchVendors() {
       try {
         let allVendors = [];

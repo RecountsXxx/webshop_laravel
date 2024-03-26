@@ -9,6 +9,7 @@
           <th>Id</th>
           <th>Email</th>
           <th>User name</th>
+          <th>Vendor User Id</th>
           <th>Created at</th>
           <th>Actions</th>
         </tr>
@@ -18,6 +19,7 @@
           <td>{{ user.id }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.name }}</td>
+          <td>{{ user.vendor.id }}</td>
           <td>{{ user.created_at }}</td>
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>

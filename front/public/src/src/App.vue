@@ -2,7 +2,6 @@
 import HeaderComponent from "@/components/general/Header.vue";
 import {Notifications} from "@kyvg/vue3-notification";
 import FooterComponent from "@/components/general/Footer.vue";
-
 </script>
 
 <template>

@@ -2,6 +2,7 @@
 
 namespace App\Models\VendorUsers;
 
+use App\Models\Vendor\Vendor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,5 +39,10 @@ class VendorUser extends Authenticatable implements JWTSubject
             'email'=>$this->email,
             'name'=>$this->name
         ];
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }
