@@ -5,12 +5,13 @@ namespace App\Services\Dashboard;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Brand\BrandRepository;
 use App\Repositories\Category\CategoryRepository;
-use App\Repositories\JoinToVendors\JoinToVendorsRepository;
 use app\Repositories\Product\Order\CommentRepository;
+use App\Repositories\Product\Order\OrderRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\User\UserRepository;
+use App\Repositories\Vendor\JoinToVendors\JoinToVendorsRepository;
 use App\Repositories\Vendor\VendorRepository;
-use App\Repositories\VendorUser\VendorUserRepository;
+use App\Repositories\Vendor\VendorUser\VendorUserRepository;
 
 class DashboardService
 {
@@ -30,7 +31,7 @@ class DashboardService
         VendorRepository        $vendorRepository,
         BrandRepository         $brandRepository,
         CategoryRepository      $categoryRepository,
-        CommentRepository       $orderRepository,
+        OrderRepository       $orderRepository,
         JoinToVendorsRepository $joinToVendorsRepository,
         VendorUserRepository    $vendorUserRepository,
     ) {

@@ -24,7 +24,7 @@
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteBrand(brand.id)">Delete</button>
             <a :href="`http://localhost/brand/${brand.id}`"><button class="btn btn-success">View</button></a>
-            <router-link :to="`/edit-brand/${brand.id}`"><button class="btn btn-primary">Edit</button></router-link>
+            <router-link :to="`/admin/edit-brand/${brand.id}`"><button class="btn btn-primary">Edit</button></router-link>
           </td>
         </tr>
         </tbody>

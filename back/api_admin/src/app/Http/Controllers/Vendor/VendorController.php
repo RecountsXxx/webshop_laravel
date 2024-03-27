@@ -3,20 +3,15 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Category\CategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Requests\Vendor\UpdateVendorRequest;
 use App\Http\Requests\Vendor\VendorRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Jobs\UpdateCategoryImageJob;
-use App\Jobs\UpdateVendorImageJob;
-use App\Jobs\UploadCategoryImageJob;
-use App\Jobs\UploadVendorImageJob;
-use App\Services\Category\CategoryService;;
-
+use App\Jobs\Vendor\UpdateVendorImageJob;
+use App\Jobs\Vendor\UploadVendorImageJob;
 use App\Services\Vendor\VendorService;
-use Illuminate\Http\Request;
+
+;
 
 class VendorController extends Controller
 {

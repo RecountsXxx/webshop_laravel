@@ -17,7 +17,7 @@
       <div class="w-100 ">
         <button class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
           <img height="30" width="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFCklEQVR4nO2aS2xVVRSGzxVaMZFWWqQoYIwTBYkDCM6IRGM6sChgWiXGoYbaBh0oUUwKOiOYRoc6MEYTiUo0qYgmxogBEWOoRikFHzzUmZX4DtbSz6zef8fl7Xncx7mXaviTM+je+6y91tnr8a99G0UX8D8FcBlwB7ATeAsYBc4Af+o5o7E9WnM70BrNBADNwEbgbWCCyjEho+82WdF5MOBiYDPwnVPqLLAP2AasB5YB84AmGTxPY+u15gOdVMC3QH/DDAJuBb50CnwGbDJFE9ZfYk/CXBvQKxkB5n431/sUngEmteHnQBdQyHjPjD6esaYArAWOSLbtMZj76QCXA4ecCz1iLlPmu1Moc20TsEV7GA4C7TUbIOFXAcck+GtghZszX99cqyHAg8CA+3slcMK52pI8TiIYcRhY4OZmAb/JDVanyLCMtjdlfrVkmKyL3HgHMKy9j1Z9MoqJQ86Ilpg1diKG4ao2Kcr4VDK2xcy1OmM+rCpmFNjBnRYkrJkDjADfZAV9SpCfkIw5CWs6nJsNVpNiJxV0KzLWzrbTq9CG0pOfnbFmlWrOZNmpWYKP6ws8HM0QAI+64M92MVXsUCemvhQwvxHKpkHswFzQ0FfO4kA7ujT2kP5+FVgcNQAUU/6AYu89N26k1HA69VREAAPtKLh4+VXjPwFX1kl5c+ke4B3gnKMsB0uSg3mKoSfKyPmGTSXji4GXgS9yq7T/yL4BeBoYYzreLaX65laa25PWT0woU8USwByVbxVZ/IRkPB9Hg+xDAuN6ptU2W7BOAt6vowFGPZ5VFce563PAkP62FLs9Q84BH8elk9a1xVbYGpVfBDyuwhpwTm6zUVT+dY2fBe4pQ+YTWr8jbtJaUMO6nAxoAV4o6RxPS4mrXdX+WHM/AjeVKXuD3hmKmwzN0tIcjDAFv3Jf+RWgs4QULnXUw9LsdRXIv17vHYubDFmj3fUG1+ipiIIAL0rWbmPQMfNrdBlh+CiJy7m0HPRoCgVa7/4QlcL1z1OFxtF3VCRT+VDCR+mImbvX7bU7qQ12H/N7p8cxZ9zUaUdlGLJLR27Pm5WwW+AXyVpYUswGXKv8lHe1BDkFxW7QY1c5hvzLtWoB8IZkvQZcYWwAeEljFvwP1Ch/fpprBca7rJZNJOtaFwMeRnVuy0H+cskbbUT6XSKi+bP8fEdIuznI3pCWfkNBTK2qMwHAk2kFMVDkfdEMB8X+nVg3FWn8S9mrLWZ+VixJq5+yLbZnQqAH0jg36eW9srS3ZLxTyeB3n1LrBYqZ7g/t2Vky158YH27RXTGN1f0u69j4pQ0wZK67JjLcF9NYdWe1unYrblirsW7gpF1ElHtNmpMxTdrzZFDatRqnMnVxR3ekkYpngeJHPhrn+mkv2JWLYUs0QwBslU4jZX9g4BZ3Qbey7lpm63Oju6BbU+nL9vsE6hmmsdhGAViomDDsrEZAs36fQBfJDf/hkuIlRche+6uOWd1YhACzq6BFuWubfhLDLi7a8iB/wRhLhaty0zY9Jk45I/K54dTJBH5jQfdYPVIzRXfe6pq8/TWfRMImg67DGxHRLOQgu6BiNyrZk2Lj9atj9vuE2xBRhr5qOksRwH7FX8BIxSm2xtPp0z1VwLhcYbsan+VyyWY97Rq7U3dbB8S2Aywmes8Lm5CCPeouvVLlYlwXG90zhg5RZKxdammH5H5j7p9qxpT9hrSmK7GfuIDov4+/AVX8tzNEmwMGAAAAAElFTkSuQmCC">
-          <router-link to="/dashboard" class="fs-5 text-decoration-none text-white ms-3">Dashboard</router-link>
+          <router-link to="/admin/dashboard" class="fs-5 text-decoration-none text-white ms-3">Dashboard</router-link>
         </button>
       </div>
 
@@ -27,9 +27,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Products</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/products" class="fs-5 text-decoration-none text-black ms-3">Show products</router-link></li>
+          <li><router-link to="/admin/products" class="fs-5 text-decoration-none text-black ms-3">Show products</router-link></li>
           <hr/>
-          <li><router-link to="/add-product" class="fs-5 text-decoration-none text-black ms-3">Add product</router-link></li>
+          <li><router-link to="/admin/add-product" class="fs-5 text-decoration-none text-black ms-3">Add product</router-link></li>
         </ul>
       </div>
 
@@ -39,9 +39,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1 ">Categories</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/categories" class="fs-5 text-decoration-none text-black ms-3">Show categories</router-link></li>
+          <li><router-link to="/admin/categories" class="fs-5 text-decoration-none text-black ms-3">Show categories</router-link></li>
           <hr/>
-          <li><router-link to="/add-category" class="fs-5 text-decoration-none text-black ms-3">Add category</router-link></li>
+          <li><router-link to="/admin/add-category" class="fs-5 text-decoration-none text-black ms-3">Add category</router-link></li>
         </ul>
       </div>
 
@@ -51,9 +51,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Vendors</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/vendors" class="fs-5 text-decoration-none text-black ms-3">Show vendors</router-link></li>
+          <li><router-link to="/admin/vendors" class="fs-5 text-decoration-none text-black ms-3">Show vendors</router-link></li>
           <hr/>
-          <li><router-link to="/add-vendor" class="fs-5 text-decoration-none text-black ms-3">Add vendor</router-link></li>
+          <li><router-link to="/admin/add-vendor" class="fs-5 text-decoration-none text-black ms-3">Add vendor</router-link></li>
         </ul>
       </div>
 
@@ -63,9 +63,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Brands</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/brands" class="fs-5 text-decoration-none text-black ms-3">Show brands</router-link></li>
+          <li><router-link to="/admin/brands" class="fs-5 text-decoration-none text-black ms-3">Show brands</router-link></li>
           <hr/>
-          <li><router-link to="/add-brand" class="fs-5 text-decoration-none text-black ms-3">Add brand</router-link></li>
+          <li><router-link to="/admin/add-brand" class="fs-5 text-decoration-none text-black ms-3">Add brand</router-link></li>
         </ul>
       </div>
 
@@ -75,9 +75,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Users</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/users" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
+          <li><router-link to="/admin/users" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
           <hr/>
-          <li><router-link to="/add-user" class="fs-5 text-decoration-none text-black ms-3">Add users</router-link></li>
+          <li><router-link to="/admin/add-user" class="fs-5 text-decoration-none text-black ms-3">Add users</router-link></li>
         </ul>
       </div>
 
@@ -87,9 +87,9 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Admins</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/admins" class="fs-5 text-decoration-none text-black ms-3">Show admins</router-link></li>
+          <li><router-link to="/admin/admins" class="fs-5 text-decoration-none text-black ms-3">Show admins</router-link></li>
           <hr/>
-          <li><router-link to="/add-admin" class="fs-5 text-decoration-none text-black ms-3">Add admin</router-link></li>
+          <li><router-link to="/admin/add-admin" class="fs-5 text-decoration-none text-black ms-3">Add admin</router-link></li>
         </ul>
       </div>
 
@@ -99,23 +99,33 @@
           <label class="fs-5 text-decoration-none text-white ms-3 me-1">Vendors users</label>
         </button>
         <ul class="w-100 dropdown-menu">
-          <li><router-link to="/vendor-users" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
+          <li><router-link to="/admin/vendor-users" class="fs-5 text-decoration-none text-black ms-3">Show users</router-link></li>
           <hr/>
-          <li><router-link to="/add-vendor-user" class="fs-5 text-decoration-none text-black ms-3">Add user</router-link></li>
+          <li><router-link to="/admin/add-vendor-user" class="fs-5 text-decoration-none text-black ms-3">Add user</router-link></li>
         </ul>
       </div>
-
+      <div class="dropdown w-100 mt-2">
+        <button class="align-items-center d-flex btn w-100 btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img width="30" height="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACKklEQVR4nO2av04UURSHrwF5AYL8sbCkp4SGGDuIhWBlrKSWhIC0ECyIxsKSJ5A3QIoFCmPlO1hZGAvCCkQh8JEDv0luNgPe3Z25M+D9ksnevXPm3PPbc3Yyd886l0gkOgKYBhrAIdXzW7FMtSviLfVlrZ1MGH+ARWDYVQwwDCwpJoIyA+zIeNHVDOCNYmuEGFs9GkOuZgBDiq0ZYnyJqymExpeERIKUkZpByoigIlzRGbmLQkZdyQCjMYQ0gdkC48571tuPIcQ4B9aBngIF3AOWgbNYpbUAnGq8DfQXIKJfvpBvW6NcIRpPAj819R0Y60LEmHwY5nMyNI6uhej9Q+Crpm2f8KoDES+AI/n4BjxqN46uhWiuV9+VjA2gL2CNf15HTCHeuZfAsUy+3LSrBAa8zZtlcq6oOIoQMqPbcsYPYDzHblznMg6AZ9f4bDuOjh2oRN7rdmxsArsa/wVWgQc6VjWHbD5pbNe+M1+uCiHAILCn6RNg3hP3wRPnc65zl0EDr3VtJm4wqhBgwisRe53IsX8CfAZ+6dgCHufY5fqibCEtn+Ke/yl2irKbleSJ1ihdSFYiH4H73Yrw/PcAK60lWaYQuzs9L0pAzjpPYz003pnH+Ki4JES4mkJofElIJEgZqRn8jxlpyrbyllsr2l4bByHG1j01llzN4OrnouDW25S3DbWe3UiUKG+OaUQiso1ZWJvaWsDc9vZ0S2YaXnP09v1hIJFIuIwLPaAe/ccUsQsAAAAASUVORK5CYII=">
+          <label class="fs-5 text-decoration-none text-white ms-3 me-1">Blog</label>
+        </button>
+        <ul class="w-100 dropdown-menu">
+          <li><router-link to="/admin/posts" class="fs-5 text-decoration-none text-black ms-3">Show posts</router-link></li>
+          <hr/>
+          <li><router-link to="/admin/add-post" class="fs-5 text-decoration-none text-black ms-3">Add post</router-link></li>
+        </ul>
+      </div>
       <div class="w-100 mt-2">
         <button class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
           <img width="30px" height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFWklEQVR4nO2bWWxVRRjHpxVRK8QNNGUp4r6BSiJVExfcSIhbIG4xMSYiYtD0wQeivIjE6Bv6pOiDptEXH1zjgiaoaLSugFpBsDEqgrjVJSBb+ZnP+790uNzbO2e5vef29J+cpL3nfLP8Z+ZbZr5xbhj1AdAM3Kyn2eUJwGXAKvrxNXCdG+oAzgFWqNNfWadFxmf67QPgAjfUAJwEPAfsAX4A5gEHeO+bRMa3IuIt4AzX6ADGAA8DO4DfgYXAwQN8f6DI+RnYBSwDWl2jAThUnf0L2CoSDo8gP0ryf3vyh7msAxgJ3A38ohF8AhiXcOnYbEBlWtkjXdZAYQ3fBPSosc8DpyQoz5bCncBmYDfwFPCCyu5RXU0uC6CgxT9V4z4ELkxY3lXAek8Znum9awfe0bsvgStT6UQcAKdLsxvWSovHHhXgfOA9lfcRcHEV0td4JE2LW29kAJOBZ4E+4EfgNt+kxShvCvCqOrMOmBNCpAZgo+T61KbJcdsRatIekUnrlZY+JEF5bcDTavwm4A5gRIBcK/C4lKwpxg61pVdtszaOiduu/QC0qII/VYHZ5qNdTABHyqz9C/yjv0cnNY1euduilFsRNhpySn7SKNl6P84lM5EdGqmdIvKYALlIzhEwQd/s1gxZGNl0UlAyX3hK5qxIBewf9ZmC/E6usBF5fIBcIvcYOM1T0t8EK2lgiYR+BWaEVlihrKuBbpX3Zqi2Bq4APpfcu8C5CdowQ30xPBAi0KmRMnwMXBKj0vM8k2aR3uWBctM00qnYeWu7+oD61BlKwOoyy+DsANmTvajve63d5kCLsMwzrftEi1FRMv3XafqviUSA61+/t0gR7qmkCIGxwKNSUr9Vi/o8uaOkrbcDf6RgWieWKMCOomnVoEYjoIwp7PVNYdyorYJpHVtNLolpTURAiTO0VCPWK+WyS45Ja6BpnV8S5EysJleFyHs9IpdWcoJSIaAI4FhPu5t9njvQmpVJmyNzZHglyY6PiJwrV9j0xjPWpioy6RFgAF5S1PaGt7F5jSsBcBHQlWK0eK3qQnUH+Si1ImClF8m9r0Z1qdOnxnJEKtfXLp/A8AlwaUT52hHgTfMbPM+tTzpifkiQUwki8kWVaWXfGIfImhNQ4ru/rQabonsSGO8iwmQka2VsAe5Ksh02aAQYNPXNiVoss2Qm8qGQjVH7Rt9uleziRFFdHQnoKtka3z7Q1riixXka7Z1pb4nXjYAigElenLH3cMSLFns8E3miSxl1J6AIYLqnI1brQb9NdzVCZggoApilGMOeWa7GqBkBFAKa2yXXFkqAvltujxsE1IqAbYoFkC++Uus6FwQ8qF2b+4ATdKBhCm5RLggoB+AxmbC1eSWgRTsw/8cEuSPA29fbkVsCDMCtwAKXVwJCMUwAwzNgeaaXAIVMDLPro/JKwD3akLCNzwW22ZE3AkZrv+9l2fYNwPVp5ec0AgGd2nM3d3emMjmLZ4aJDk6zTkC3Njkn6P8+ha2WDjNbrq7hNWBq1glQX7pDCVhSmqhkmVrA6yJivJc8sUm/WarLQVkkwPqgvgQfjzdplIs+vSUwTdG7I8pkhC7SUfa4LBFQJvlqdiTdxb4nw4lTZAaLgDIpMntPiOMW2FLuZDhrBMRNvkpSwf1JzvLTIiBu8lWSCtu8KbZRynDEYBMQN/kqU6myxCSgrqmyaSZLRyUgU8nSFXL6NnijMjUtAuImXw066M/q3OyZzklxCTDfQvrGT76K7HBl9soMFQho2Cszpah2MlxKgDeDtjT0panQa3NFAobstbkqWnyVkqzWe7dI7V27G+ogr1dnfeT68rTLEP4DK8wHBiWPRSkAAAAASUVORK5CYII=">
-          <router-link to="/orders" class="fs-5 text-decoration-none text-white ms-3">Orders</router-link>
+          <router-link to="/admin/orders" class="fs-5 text-decoration-none text-white ms-3">Orders</router-link>
         </button>
       </div>
 
       <div class="w-100 mt-2">
         <button class="btn w-full w-100 btn-secondary d-flex align-items-center" type="button">
           <img width="30px" height="30px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVR4nO3ZvUoDURCG4dFG8Qo0Fla2EhvvwcTchPaWrmAREvQ2LMVeBBUjlrkGS8XGStYfFJE3HDNIXM4msYlzcJ4uZ3bDHL79gVkR59yvABtAB3jGniftrT5qE/ukoz0sieAd2AEqYgxQATLtMajFDrrSYibG0d9McBkrhusvWBDjgHntNY8Vv0giKOvXN/JH8ESMwRMxBk/EGDwRY/BEjMETMQZPxBg8EWPwRIzBEzGG/5BIrjVzo9IiYFF7fYwVOwmNTHeHjUzrA0PsLJEh9nrZge0xxvlnJedOA9dMTmvUrmshsoF7JmY2cl5jAs3n2ls8iXEBt/qHS4X1KaCrtYZYB9xosyuF9S1d74p19O+BF234+0EAVPV74xuwKtYBa7qJ+8Lag65vSyJpXGjDB8AcsKcpBE2xDpgBDrXhD+AovFH1d7jUNiUFwHnkMfgJHAPLkgrgBHgF7oBTfbP+ePw658S8HoG/eYRcCNfkAAAAAElFTkSuQmCC">
-          <router-link to="/vendors-requests" class="fs-5 text-decoration-none text-white ms-3">Vendors requests</router-link>
+          <router-link to="/admin/vendors-requests" class="fs-5 text-decoration-none text-white ms-3">Vendors requests</router-link>
         </button>
       </div>
       <div class="w-100 mt-2">

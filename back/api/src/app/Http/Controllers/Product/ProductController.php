@@ -3,15 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Product\ProductFilterRequest;
-use App\Http\Requests\Product\ProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Models\Product\Product;
-use App\Repositories\Product\ProductRepository;
 use App\Services\Product\ProductService;
-use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

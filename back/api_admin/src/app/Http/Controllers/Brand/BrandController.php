@@ -5,15 +5,13 @@ namespace App\Http\Controllers\Brand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brand\BrandRequest;
 use App\Http\Requests\Brand\UpdateBrandRequest;
-use App\Http\Requests\Category\CategoryRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Jobs\UpdateBrandImageJob;
-use App\Jobs\UploadBrandImageJob;
-use App\Jobs\UploadCategoryImageJob;
+use App\Jobs\Brand\UpdateBrandImageJob;
+use App\Jobs\Brand\UploadBrandImageJob;
 use App\Services\Brand\BrandService;
-use App\Services\Category\CategoryService;;
-use Illuminate\Http\Request;
+
+;
 
 class BrandController extends Controller
 {

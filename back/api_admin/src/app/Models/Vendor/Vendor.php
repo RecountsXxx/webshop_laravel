@@ -3,7 +3,7 @@
 namespace App\Models\Vendor;
 
 use App\Models\Product\Product;
-use App\Models\VendorUsers\VendorUser;
+use App\Models\Vendor\VendorUsers\VendorUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

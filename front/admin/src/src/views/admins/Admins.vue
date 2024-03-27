@@ -21,7 +21,7 @@
           <td>{{ admin.created_at }}</td>
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteAdmin(admin.id)">Delete</button>
-            <router-link :to="`/edit-admin/${admin.id}`"><button class="btn btn-primary">Edit</button></router-link>
+            <router-link :to="`/admin/edit-admin/${admin.id}`"><button class="btn btn-primary">Edit</button></router-link>
           </td>
         </tr>
         </tbody>

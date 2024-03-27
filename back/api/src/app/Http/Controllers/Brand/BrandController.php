@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Brand;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Brand\BrandRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
 use App\Services\Brand\BrandService;

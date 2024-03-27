@@ -16,6 +16,9 @@ import AccountPage from "@/pages/AccountPage.vue";
 import CategoryList from "@/pages/lists/CategoryList.vue";
 import VendorList from "@/pages/lists/VendorList.vue";
 import BrandList from "@/pages/lists/BrandList.vue";
+import BlogPage from "@/pages/blog/BlogPage.vue";
+import BlogDetails from "@/pages/blog/BlogDetails.vue";
+
 const routes = [
     { path: '/', component: Home },
     { path: '/login', component: LoginPage },
@@ -31,6 +34,8 @@ const routes = [
     {path: '/shop/category/:category', component: ShopPage},
     {path: '/shop/vendor/:vendor', component: ShopPage},
     {path: '/shop/brand/:brand', component: ShopPage},
+    {path: '/blog', component: BlogPage},
+    {path: '/blog/:id', component: BlogDetails},
     { path: '/account', component: AccountPage, meta: { requiresAuth: true } },
 ];
 const router = createRouter({

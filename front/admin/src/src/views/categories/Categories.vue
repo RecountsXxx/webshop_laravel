@@ -24,7 +24,7 @@
           <td class="d-flex gap-3 flex-row">
             <button class="btn btn-danger" @click="deleteCategory(category.id)">Delete</button>
             <a :href="`http://localhost/category/${category.id}`"><button class="btn btn-success">View</button></a>
-            <router-link :to="`/edit-category/${category.id}`"><button class="btn btn-primary">Edit</button></router-link>
+            <router-link :to="`/admin/edit-category/${category.id}`"><button class="btn btn-primary">Edit</button></router-link>
           </td>
         </tr>
         </tbody>

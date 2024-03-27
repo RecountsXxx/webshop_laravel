@@ -11,8 +11,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
 Route::prefix('admin')->group(function (){
     Route::prefix('auth')->group(function () {
         Route::post('login', LoginController::class)->name('auth.login');
@@ -36,12 +34,15 @@ Route::prefix('admin')->group(function (){
 
     Route::apiResource('users',\App\Http\Controllers\User\UserController::class);
     Route::apiResource('admins',\App\Http\Controllers\Admin\AdminController::class);
-    Route::apiResource('vendor-users',\App\Http\Controllers\VendorUser\VendorUserController::class);
+    Route::apiResource('vendor-users', \App\Http\Controllers\Vendor\VendorUser\VendorUserController::class);
 
-    Route::apiResource('orders', \App\Http\Controllers\Order\OrderController::class)->except(['store','update','show']);
+    Route::apiResource('orders', \App\Http\Controllers\Product\Order\OrderController::class)->except(['store','update','show']);
 
-    Route::apiResource('join-to-vendors',\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class)->except(['store','update','show']);
-    Route::get('/add-to-vendors/{id}',[\App\Http\Controllers\JoinToVendors\JoinToVendorsController::class,'addToVendors']);
+    Route::apiResource( 'posts',\App\Http\Controllers\Post\PostController::class);
+    Route::post('posts/{post}', [\App\Http\Controllers\Post\PostController::class, 'update']);
+
+    Route::apiResource('join-to-vendors', \App\Http\Controllers\Vendor\JoinToVendors\JoinToVendorsController::class)->except(['store','update','show']);
+    Route::get('/add-to-vendors/{id}',[\App\Http\Controllers\Vendor\JoinToVendors\JoinToVendorsController::class,'addToVendors']);
 
     Route::get('/dashboard',DashboardController::class);
 });

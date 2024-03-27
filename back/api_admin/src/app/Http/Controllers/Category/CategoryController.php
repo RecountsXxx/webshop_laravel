@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Jobs\UpdateCategoryImageJob;
-use App\Jobs\UploadCategoryImageJob;
-use App\Services\Category\CategoryService;;
-use Illuminate\Http\Request;
+use App\Jobs\Category\UpdateCategoryImageJob;
+use App\Jobs\Category\UpdatePostImageJob;
+use App\Jobs\Category\UploadCategoryImageJob;
+use App\Jobs\Category\UploadPostImageJob;
+use App\Services\Category\CategoryService;
+
+;
 
 class CategoryController extends Controller
 {
@@ -46,8 +48,6 @@ class CategoryController extends Controller
             return new InternalServerErrorResource(['error' => $e->getMessage()]);
         }
     }
-
-
 
     public function show(string $id)
     {

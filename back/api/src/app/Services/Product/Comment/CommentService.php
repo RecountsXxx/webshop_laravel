@@ -7,7 +7,7 @@ use App\Repositories\Product\ProductRepository;
 
 class CommentService
 {
-    public function __construct(private CommentRepository $commentRepository, private ProductRepository $productRepository){}
+    public function __construct(private CommentRepository $commentRepository){}
 
     public function store($data)
     {

@@ -2,11 +2,8 @@ import axios from "axios";
 import {userStore} from "@/stores/store";
 import {useNotification} from "@kyvg/vue3-notification";
 
-import { useRouter } from 'vue-router';
-
 class AuthService {
     notification = useNotification();
-    router = useRouter();
 
     async login(email, password) {
         try {
@@ -22,6 +19,7 @@ class AuthService {
                 });
                 const store = userStore();
                 store.set({name: response.data.data.user.name, email: response.data.data.user.email, token: response.data.data.authorisation.token});
+
             }
 
         } catch (error) {

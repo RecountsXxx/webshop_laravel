@@ -27,38 +27,46 @@ import Users from "@/views/users/Users.vue";
 import AddUser from "@/views/users/AddUser.vue";
 import EditUser from "@/views/users/EditUser.vue";
 import HomeView from "@/views/HomeView.vue";
-import Orders from "@/views/orders/Orders.vue";
-import JoinToVendors from "@/views/join-to-vendors/JoinToVendors.vue";
-import AddVendorUser from "@/views/vendor-users/AddVendorUser.vue";
-import VendorUsers from "@/views/vendor-users/VendorUsers.vue";
-import EditVendorUser from "@/views/vendor-users/EditVendorUser.vue";
+import Orders from "@/views/products/orders/Orders.vue";
+import JoinToVendors from "@/views/vendors/join-to-vendors/JoinToVendors.vue";
+import AddVendorUser from "@/views/vendors/vendor-users/AddVendorUser.vue";
+import VendorUsers from "@/views/vendors/vendor-users/VendorUsers.vue";
+import EditVendorUser from "@/views/vendors/vendor-users/EditVendorUser.vue";
+import Posts from "@/views/posts/Posts.vue";
+import AddPost from "@/views/posts/AddPost.vue";
+import EditPost from "@/views/posts/EditPost.vue";
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 const routes = [
-    { path: '/', component: HomeView  },
-    { path: '/dashboard', component: HomeView  },
-    { path: '/products', component: Products  },
-    { path: '/add-product', component: AddProduct  },
-    { path: '/edit-product/:id', component: EditProduct  },
-    { path: '/categories', component: Categories  },
-    { path: '/add-category', component: AddCategory  },
-    { path: '/edit-category/:id', component: EditCategory  },
-    { path: '/brands', component: Brands  },
-    { path: '/add-brand', component: AddBrand  },
-    { path: '/edit-brand/:id', component: EditBrand  },
-    { path: '/vendors', component: Vendors  },
-    { path: '/add-vendor', component: AddVendor  },
-    { path: '/edit-vendor/:id', component: EditVendor  },
-    { path: '/users', component: Users  },
-    { path: '/add-user', component: AddUser  },
-    { path: '/edit-user/:id', component: EditUser  },
-    { path: '/admins', component: Admins  },
-    { path: '/edit-admin/:id', component: EditAdmin  },
-    { path: '/add-admin', component: AddAdmin  },
-    { path: '/vendor-users', component: VendorUsers  },
-    { path: '/add-vendor-user', component: AddVendorUser  },
-    { path: '/edit-vendor-user/:id', component: EditVendorUser  },
-    { path: '/orders', component: Orders  },
-    { path: '/vendors-requests', component: JoinToVendors  },
+    { path: '/admin/', component: HomeView  },
+    { path: '/admin/dashboard', component: HomeView  },
+    { path: '/admin/products', component: Products  },
+    { path: '/admin/add-product', component: AddProduct  },
+    { path: '/admin/edit-product/:id', component: EditProduct  },
+    { path: '/admin/categories', component: Categories  },
+    { path: '/admin/add-category', component: AddCategory  },
+    { path: '/admin/edit-category/:id', component: EditCategory  },
+    { path: '/admin/brands', component: Brands  },
+    { path: '/admin/add-brand', component: AddBrand  },
+    { path: '/admin/edit-brand/:id', component: EditBrand  },
+    { path: '/admin/vendors', component: Vendors  },
+    { path: '/admin/add-vendor', component: AddVendor  },
+    { path: '/admin/edit-vendor/:id', component: EditVendor  },
+    { path: '/admin/users', component: Users  },
+    { path: '/admin/add-user', component: AddUser  },
+    { path: '/admin/edit-user/:id', component: EditUser  },
+    { path: '/admin/admins', component: Admins  },
+    { path: '/admin/edit-admin/:id', component: EditAdmin  },
+    { path: '/admin/add-admin', component: AddAdmin  },
+    { path: '/admin/vendor-users', component: VendorUsers  },
+    { path: '/admin/add-vendor-user', component: AddVendorUser  },
+    { path: '/admin/edit-vendor-user/:id', component: EditVendorUser  },
+    { path: '/admin/orders', component: Orders  },
+    { path: '/admin/vendors-requests', component: JoinToVendors  },
+    { path: '/admin/posts', component: Posts  },
+    { path: '/admin/add-post', component: AddPost  },
+    { path: '/admin/edit-post/:id', component: EditPost  },
 
 ];
 const router = createRouter({
@@ -76,6 +84,7 @@ app.use(Toast, {
     maxToasts: 20,
     newestOnTop: true
 });
+app.component('QuillEditor', QuillEditor)
 app.use(router)
 app.mount('#app')
 

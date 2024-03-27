@@ -12,7 +12,6 @@ class CommentController extends Controller
 {
     public function __construct(private CommentService $commentService){}
 
-
     public function show(string $id){
         try {
             $comments = $this->commentService->show_on_product($id);

@@ -8,11 +8,8 @@ use App\Http\Requests\Product\ProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\BaseWithResponseResource;
 use App\Http\Resources\Errors\InternalServerErrorResource;
-use App\Jobs\AddOneProductImageJob;
-use App\Jobs\UploadProductImageJob;
+use App\Jobs\Product\AddOneProductImageJob;
 use App\Services\Product\ProductService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
